@@ -1,47 +1,178 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <title>Centro de Formación Fernando Guillem</title>
-    <link rel="stylesheet" href="estilo.css" type="text/css">
-    <link rel="stylesheet" href="circulo.css" type="text/css">
+    <link rel="stylesheet" href="css/estilo.css" type="text/css">
+    <link rel="stylesheet" href="css/circulo.css" type="text/css">
 </head>
 <body>
-    <div class="padre">
-        <div class="padre_izdo">
-            <div class="img_1">
-                <img src="logods.png" width="50%" alt="Centro de Formación Fernando Guillem">
+        <div class="padre">
+            <div class="padre_izdo">
+                <div class="img_1">
+                    <img src="img/logods.png" width="50%">
+                </div>
+            </div>
+                  
+            <div class="padre_decho">
+                <ul>
+                    <li><a href="html/principal.html" target="_self" title="Pica sobre el enlace para acceder al permiso de la clase AM">Permiso AM</a></li>
+                    <li><a href="#" target="_self" title="Pica sobre el enlace para acceder al permiso de la clase A1">Permiso A1</a></li>
+                    <li><a href="#" target="_self" title="Pica sobre el enlace para acceder al permiso de la clase A2">Permiso A2</a></li>
+                    <li><a href="#" target="_self" title="Pica sobre el enlace para acceder al permiso de la clase B">Permiso B</a></li>
+                    <li><a href="#" target="_self" title="Pica sobre el enlace para acceder al permiso de la clase C">Permiso C</a></li>
+                    <li><a href="#" target="_self" title="Pica sobre el enlace para acceder al permiso de la clase D">Permiso D</a></li>
+                    <li><a href="#" target="_self" title="Pica sobre el enlace para acceder al permiso de la clase E">Permiso E</a></li>
+                </ul>
             </div>
         </div>
-        <div class="padre_decho">
-            <ul>
-                <li><a href="principal.html" target="_self" title="Pica sobre el enlace para acceder al permiso de la clase AM">Permiso AM</a></li>
-                <li><a href="#" target="_self" title="Pica sobre el enlace para acceder al permiso de la clase A1">Permiso A1</a></li>
-                <li><a href="#" target="_self" title="Pica sobre el enlace para acceder al permiso de la clase A2">Permiso A2</a></li>
-                <li><a href="#" target="_self" title="Pica sobre el enlace para acceder al permiso de la clase B">Permiso B</a></li>
-                <li><a href="#" target="_self" title="Pica sobre el enlace para acceder al permiso de la clase C">Permiso C</a></li>
-                <li><a href="#" target="_self" title="Pica sobre el enlace para acceder al permiso de la clase D">Permiso D</a></li>
-                <li><a href="#" target="_self" title="Pica sobre el enlace para acceder al permiso de la clase E">Permiso E</a></li>
-            </ul>
-        </div>
-    </div>
     <hr>
-    <main class="contenedor">
-        <div class="menu-circular">
-            <div class="centro"><span>MI MENÚ</span></div>
-            <a href="principal.html" class="item item1" title="Clica en la imagen para ir a la página del Permiso AM"><div class="logo"><img class="vehiculo-normal" src="r-105.png" alt="Permiso AM"><img class="vehiculo-hover" src="r-105.png" alt="Permiso AM"></div><span>Permiso AM</span></a>
-            <a href="#" class="item item2" title="Clica en la imagen para ir a la página del Permiso A1"><div class="logo"><img class="vehiculo-normal" src="r-104.png" alt="Permiso A1"><img class="vehiculo-hover" src="r-104B.png" alt="Permiso A1"></div><span>Permiso A1</span></a>
-            <a href="#" class="item item3" title="Clica en la imagen para ir a la página del Permiso A2"><div class="logo"><img class="vehiculo-normal" src="r-104A2.png" alt="Permiso A2"><img class="vehiculo-hover" src="r-104A2.png" alt="Permiso A2"></div><span>Permiso A2</span></a>
-            <a href="#" class="item item4" title="Clica en la imagen para ir a la página del Permiso C1-C"><div class="logo"><img class="vehiculo-normal" src="r-103.png" alt="Permiso C1-C"><img class="vehiculo-hover" src="r-103.png" alt="Permiso C1-C"></div><span>Permiso C1-C</span></a>
-            <a href="#" class="item item5" title="Clica en la imagen para ir a la página del Permiso D1-D"><div class="logo"><img class="vehiculo-normal" src="r-106.png" alt="Permiso D1-D"><img class="vehiculo-hover" src="r-106.png" alt="Permiso D1-D"></div><span>Permiso D1-D</span></a>
-            <a href="#" class="item item6" title="Clica en la imagen para ir a la página del Permiso E"><div class="logo"><img class="vehiculo-normal" src="s-19.png" alt="Permiso E"><img class="vehiculo-hover" src="s-19.png" alt="Permiso E"></div><span>Permiso E</span></a>
-            <a href="#" class="item item7" title="Clica en la imagen para ir a la página del Permiso E"><div class="logo"><img class="vehiculo-normal" src="permisoE.png" alt="Permiso E"><img class="vehiculo-hover" src="permisoE.png" alt="Permiso E"></div><span>Permiso E</span></a>
+<main class="contenedor">
+
+    <div class="menu-circular">
+
+        <!-- Círculo central -->
+        <div class="centro">
+            <span>MI MENÚ</span>
         </div>
-    </main>
+
+
+        <!-- IMAGEN 1 -->
+        <a href="html/principal.html"
+           class="item item1"
+           title="Clica en la imagen para ir a la página del Permiso AM">
+
+            <div class="logo">
+                     <img class="vehiculo-normal"
+                     src="img/r-105.png"
+                     alt="Permiso AM">
+                
+                <img class="vehiculo-hover"
+                     src="img/r-105.png"
+                     alt="Permiso AM">
+            </div>
+
+            <span>Permiso AM</span>
+        </a>
+
+
+        <!-- IMAGEN 2 -->
+        <a href="#"
+           class="item item2"
+           title="Clica en la imagen para ir a la página del Permiso A1">
+
+            <div class="logo">
+                <img class="vehiculo-normal"
+                     src="img/r-104.png"
+                     alt="Permiso A1">
+
+                <img class="vehiculo-hover"
+                     src="img/r-104B.png"
+                     alt="Permiso A1">
+            </div>
+
+            <span>Permiso A1</span>
+        </a>
+
+
+        <!-- IMAGEN 3 -->
+        <a href="#"
+           class="item item3"
+           title="Clica en la imagen para ir a la página del Permiso A2">
+
+            <div class="logo">
+                <img class="vehiculo-normal"
+                     src="img/r-104A2.png"
+                     alt="Permiso A2">
+
+                <img class="vehiculo-hover"
+                     src="img/r-104A2.png"
+                     alt="Permiso A2">
+            </div>
+
+            <span>Permiso A2</span>
+        </a>
+
+
+        <!-- IMAGEN 4 -->
+        <a href="#"
+           class="item item4"
+           title="Clica en la imagen para ir a la página del Permiso A2">
+
+            <div class="logo">
+                <img class="vehiculo-normal"
+                     src="img/r-103.png"
+                     alt="Permiso B">
+
+                <img class="vehiculo-hover"
+                     src="img/r-103.png"
+                     alt="Permiso B">
+            </div>
+
+            <span>Permiso C1-C</span>
+        </a>
+
+
+        <!-- IMAGEN 5 -->
+        <a href="#"
+           class="item item5"
+           title="Clica en la imagen para ir a la página del Permiso D1-D">
+
+            <div class="logo">
+                <img class="vehiculo-normal"
+                     src="img/r-106.png"
+                     alt="Permiso C1-C">
+
+                <img class="vehiculo-hover"
+                     src="img/r-106.png"
+                     alt="Permiso C1-C">
+            </div>
+
+            <span>Permiso D1-D</span>
+        </a>
+
+
+        <!-- IMAGEN 6 -->
+        <a href="#l"
+           class="item item6"
+           title="Clica en la imagen para ir a la página del Permiso E">
+
+            <div class="logo">
+                <img class="vehiculo-normal"
+                     src="img/s-19.png"
+                     alt="Permiso D1-D">
+
+                <img class="vehiculo-hover"
+                     src="img/s-19.png"
+                     alt="Permiso D1-D">
+            </div>
+
+            <span>Permiso E</span>
+        </a>
+        <!-- IMAGEN 7 -->
+        <a href="#l"
+           class="item item7"
+           title="Clica en la imagen para ir a la página del Permiso E">
+
+            <div class="logo">
+                <img class="vehiculo-normal"
+                     src="img/permisoE.png"
+                     alt="Permiso E">
+
+                <img class="vehiculo-hover"
+                     src="img/permisoE.png"
+                     alt="Permiso E">
+            </div>
+
+            <span>Permiso E</span>
+        </a>
+    </div>
+
+</main>
 </body>
+
 </html>
