@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Centro de Formación Fernando Guillem</title>
+    <link rel="stylesheet" href="/css/estilo.css" type="text/css">
+    <link rel="stylesheet" href="/css/circulo.css" type="text/css">
+    <link rel="stylesheet" href="/css/menu.css" type="text/css">
+    
+</head>
+<body>
+    <div class="padre">
+            <div class="padre_izdo">
+                <div class="img_1">
+                    <img src="/img/logods.png" width="50%">
+                </div>
+            </div>
+                  
+            <div class="padre_decho">
+                <ul>
+                    <li><a href="/index.html" target="_self" title="Pica sobre el enlace para acceder al permiso de la clase AM">Permiso AM</a></li>
+                    <li><a href="#" target="_self" title="Pica sobre el enlace para acceder al permiso de la clase A1">Permiso A1</a></li>
+                    <li><a href="#" target="_self" title="Pica sobre el enlace para acceder al permiso de la clase A2">Permiso A2</a></li>
+                    <li><a href="#" target="_self" title="Pica sobre el enlace para acceder al permiso de la clase B">Permiso B</a></li>
+                    <li><a href="#" target="_self" title="Pica sobre el enlace para acceder al permiso de la clase C">Permiso C</a></li>
+                    <li><a href="#" target="_self" title="Pica sobre el enlace para acceder al permiso de la clase D">Permiso D</a></li>
+                    <li><a href="#" target="_self" title="Pica sobre el enlace para acceder al permiso de la clase E">Permiso E</a></li>
+                </ul>
+            </div>
+        </div>
+    <hr>
+     <!-- ==========================================
+         CONTENEDOR PRINCIPAL
+    =========================================== -->
+
+    <div class="app">
+
+
+        <!-- ======================================
+             MENÚ LATERAL
+        ======================================= -->
+
+        <aside class="sidebar" id="sidebar">
+
+            <div class="sidebar-header">
+
+                <div class="logo">
+                    <span class="logo-icon">AM</span>
+
+                    <span class="logo-text">
+                        Permiso AM
+                    </span>
+                </div>
+
+            </div>
+
+
+            <!-- MENÚ -->
+
+            <nav class="menu">
+
+        <p class="menu-title">
+            ÍNDICE
+        </p>
+
+
+        <!-- =====================================
+            DEFINICIONES
+        ====================================== -->
+
+        <div class="menu-grupo">
+
+            <button
+                type="button"
+                class="menu-item menu-toggle"
+                id="btnDefiniciones">
+
+                <span class="menu-icon">📖</span>
+
+                <span class="menu-text">
+                    Definiciones
+                </span>
+
+                <span class="menu-flecha">
+                    ▼
+                </span>
+
+            </button>
+
+
+            <!-- SUBMENÚ -->
+
+            <div
+                class="submenu"
+                id="submenuDefiniciones">
+
+                <a
+                    href="01_am_definiciones.html"
+                    class="submenu-item"
+                    data-vista="definiciones_via">
+
+                    Definiciones de la Vía
+
+                </a>
+
+
+                
+
+            </div>
+
+        </div>
+
+        <!-- =====================================
+            MANIOBRAS
+        ====================================== -->
+
+        <div class="menu-grupo">
+
+            <button
+                type="button"
+                class="menu-item menu-toggle"
+                id="btnManiobras">
+
+                <span class="menu-icon">🚗</span>
+
+                <span class="menu-text">
+                    Maniobras
+                </span>
+
+                <span class="menu-flecha">
+                    ▼
+                </span>
+
+            </button>
+
+
+            <!-- SUBMENÚ -->
+
+            <div
+                class="submenu"
+                id="submenuManiobras">
+
+                <a
+                    href="normas.html"
+                    class="submenu-item"
+                    data-vista="normas">
+
+                    Normas generales
+
+                </a>
+
+
+                <a
+                    href="#incorporación"
+                    class="submenu-item"
+                    data-vista="incorporacion">
+
+                    Incorporación a la circulación
+
+                </a>
+
+
+                <a
+                    href="#desplazamiento"
+                    class="submenu-item"
+                    data-vista="desplazamiento">
+
+                    Desplazamientos laterales
+
+                </a>
+                
+
+                <a
+                    href="#cambidir"
+                    class="submenu-item"
+                    data-vista="cambidir">
+
+                    Cambios de dirección
+
+                </a>
+
+                <a
+                    href="#cambidir"
+                    class="submenu-item"
+                    data-vista="cambidir">
+
+                    Cambio de sentido
+
+                </a>
+
+                <a
+                    href="#adelantamientos"
+                    class="submenu-item"
+                    data-vista="adelantar">
+
+                    Adelantamientos
+
+                </a>
+
+                <a
+                    href="#marcha_atras"
+                    class="submenu-item"
+                    data-vista="reversa">
+
+                    Marcha atrás
+
+                </a>
+            </div>
+
+        </div>
+        <!-- =====================================
+            SEÑALIZACIÓN DE LA VÍA
+        ====================================== -->
+
+        <div class="menu-grupo">
+
+            <button
+                type="button"
+                class="menu-item menu-toggle"
+                id="btnSeñalizacion">
+
+                <span class="menu-icon">🛑</span>
+
+                <span class="menu-text">
+                    Señalización de la vía
+
+                <span class="menu-flecha">
+                    ▼
+                </span>
+
+            </button>
+
+
+            <!-- SUBMENÚ -->
+
+            <div
+                class="submenu"
+                id="submenuSeñalizacion">
+
+                <a
+                    href="#normas"
+                    class="submenu-item"
+                    data-vista="normas">
+
+                    Señalización de la vía
+
+                </a>
+
+
+                <a
+                    href="#incorporación"
+                    class="submenu-item"
+                    data-vista="incorporacion">
+
+                    Señales de los agentes
+
+                </a>
+
+
+                <a
+                    href="#desplazamiento"
+                    class="submenu-item"
+                    data-vista="desplazamiento">
+
+                    Semáforos
+
+                </a>
+                
+
+                <a
+                    href="#cambidir"
+                    class="submenu-item"
+                    data-vista="cambidir">
+
+                    Señales verticales
+
+                </a>
+
+                <a
+                    href="#cambidir"
+                    class="submenu-item"
+                    data-vista="cambidir">
+
+                    Señales de advertencia de peligro
+
+                </a>
+
+                <a
+                    href="#adelantamientos"
+                    class="submenu-item"
+                    data-vista="adelantar">
+
+                    Señales de Obligación
+
+                </a>
+
+                <a
+                    href="#marcha_atras"
+                    class="submenu-item"
+                    data-vista="reversa">
+
+                    Marcas Viales
+
+                </a>
+            </div>
+
+        </div>
+        
+        
+
+    </nav>
+
+
+            <!-- PARTE INFERIOR DEL MENÚ -->
+
+            <div class="sidebar-footer">
+
+                <div class="usuario">
+
+                    <div class="usuario-avatar">
+                        ADC
+                    </div>
+
+                    <div class="usuario-info">
+
+                        <strong>
+                            Antonio Díaz Carrasco
+                        </strong>
+
+                        <small>
+                            Administrador
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- ======================================
+             PARTE DERECHA
+        ======================================= -->
+
+        <div class="main">
+
+
+            <!-- ==================================
+                 CABECERA
+            =================================== -->
+
+            <header class="topbar">
+
+                <button
+                    id="btnMenu"
+                    class="btn-menu"
+                    title="Mostrar/ocultar menú">
+
+                    ☰
+
+                </button>
+
+
+                <div class="breadcrumb">
+
+                    <span id="tituloPagina">
+                        Inicio
+                    </span>
+
+                </div>
+
+
+                <div class="topbar-right">
+
+                    <button
+                        class="icon-button"
+                        title="Notificaciones">
+
+                        🔔
+
+                    </button>
+
+
+                    <div class="topbar-user">
+
+                        <div class="usuario-avatar">
+                            AAC
+                        </div>
+
+                        <span>
+                            Antonio Alvarez Castillo
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- ==================================
+                 CONTENIDO
+            =================================== -->
+
+            <main
+                id="contenido"
+                class="contenido">
+
+                <div class="loading">
+                    Cargando...
+                </div>
+
+            </main>
+
+
+            <!-- ==================================
+                 PIE
+            =================================== -->
+
+            <footer class="footer">
+
+                <span>
+                    Mi Aplicación
+                </span>
+
+                <span>
+                    Versión 1.0
+                </span>
+
+            </footer>
+
+        </div>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="/js/menu.js"></script>
+</body>
+</html>
