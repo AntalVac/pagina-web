@@ -1,0 +1,67 @@
+/* ==================================================
+   ACORDEÓN DEL MENÚ LATERAL
+   Apertura y cierre suave de los submenús.
+================================================== */
+
+.submenu {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    overflow: hidden;
+    max-height: 0;
+    transition:
+        grid-template-rows 0.3s ease,
+        opacity 0.25s ease,
+        max-height 0.3s ease;
+}
+
+.submenu::before {
+    content: "";
+    min-height: 0;
+}
+
+.submenu.abierto {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    max-height: 500px;
+}
+
+.submenu-item {
+    display: block;
+    overflow: hidden;
+    color: #9ca3af;
+    text-decoration: none;
+    padding: 9px 12px 9px 46px;
+    font-size: 13px;
+    transition:
+        color 0.2s ease,
+        background 0.2s ease;
+}
+
+.submenu-item:hover {
+    color: white;
+    background: #1f2937;
+}
+
+.menu-flecha {
+    margin-left: auto;
+    transition: transform 0.3s ease;
+}
+
+.menu-toggle.abierto .menu-flecha {
+    transform: rotate(180deg);
+}
+
+/* En el menú contraído no mostramos los submenús. */
+.sidebar.colapsado .submenu {
+    display: none;
+}
+
+/* Respeta la preferencia de movimiento reducido del usuario. */
+@media (prefers-reduced-motion: reduce) {
+    .submenu,
+    .menu-flecha,
+    .submenu-item {
+        transition: none;
+    }
+}
