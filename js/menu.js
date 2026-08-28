@@ -8,7 +8,6 @@ const botones = document.querySelectorAll("[data-vista]");
 
 /* =========================================================
    VISTAS
-   Relación entre data-vista y archivo HTML
    ========================================================= */
 
 const vistas = {
@@ -36,10 +35,6 @@ botones.forEach(function (boton) {
 });
 
 
-/* =========================================================
-   CARGAR UNA VISTA
-   ========================================================= */
-
 function cargarVista(nombreVista) {
     const archivo = vistas[nombreVista];
 
@@ -53,9 +48,7 @@ function cargarVista(nombreVista) {
         return;
     }
 
-    contenido.innerHTML = `
-        <div class="loading">Cargando...</div>
-    `;
+    contenido.innerHTML = `<div class="loading">Cargando...</div>`;
 
     fetch(archivo)
         .then(function (respuesta) {
@@ -73,7 +66,6 @@ function cargarVista(nombreVista) {
 
             botonActivo(nombreVista);
 
-            // En móvil, al elegir una sección se cierra el panel.
             if (window.innerWidth <= 700) {
                 const sidebarMovil = document.getElementById("sidebar");
                 if (sidebarMovil) {
@@ -94,10 +86,6 @@ function cargarVista(nombreVista) {
         });
 }
 
-
-/* =========================================================
-   MARCAR BOTÓN ACTIVO
-   ========================================================= */
 
 function botonActivo(nombreVista) {
     const boton = document.querySelector(`[data-vista="${nombreVista}"]`);
@@ -127,11 +115,7 @@ if (btnMenu && sidebar) {
 
 /* =========================================================
    ACORDEÓN DEL MENÚ LATERAL
-   =========================================================
-   Solo puede haber un submenú abierto a la vez.
-   Al abrir uno, los demás se cierran.
-   Si se pulsa de nuevo sobre el que ya está abierto,
-   se cierra y quedan todos cerrados.
+   Solo un submenú puede permanecer abierto.
    ========================================================= */
 
 const gruposMenu = document.querySelectorAll(".menu-grupo");
@@ -141,21 +125,18 @@ function cerrarTodosLosSubmenus(excepto) {
         const submenu = grupo.querySelector(".submenu");
         const boton = grupo.querySelector(".menu-toggle");
 
-        if (!submenu) {
+        if (!submenu || grupo === excepto) {
             return;
         }
 
-        if (grupo !== excepto) {
-            submenu.classList.remove("abierto");
+        submenu.classList.remove("abierto");
 
-            if (boton) {
-                boton.classList.remove("abierto");
-                boton.setAttribute("aria-expanded", "false");
-            }
+        if (boton) {
+            boton.classList.remove("abierto");
+            boton.setAttribute("aria-expanded", "false");
         }
     });
 }
-
 
 gruposMenu.forEach(function (grupo) {
     const boton = grupo.querySelector(".menu-toggle");
@@ -165,16 +146,13 @@ gruposMenu.forEach(function (grupo) {
         return;
     }
 
-    // Estado inicial accesible.
     boton.setAttribute("aria-expanded", "false");
 
     boton.addEventListener("click", function () {
         const estabaAbierto = submenu.classList.contains("abierto");
 
-        // Primero cerramos todos los demás.
         cerrarTodosLosSubmenus(grupo);
 
-        // Después abrimos/cerramos el actual.
         if (estabaAbierto) {
             submenu.classList.remove("abierto");
             boton.classList.remove("abierto");
@@ -186,3 +164,61 @@ gruposMenu.forEach(function (grupo) {
         }
     });
 });
+
+
+/* =========================================================
+   ANIMACIÓN SUAVE DEL ACORDEÓN
+   Se inyecta aquí para no modificar el resto del CSS.
+   ========================================================= */
+
+const estiloAcordeon = document.createElement("style");
+estiloAcordeon.textContent = `
+    .submenu {
+        display: grid;
+        grid-template-rows: 0fr;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition:
+            grid-template-rows 0.30s ease,
+            max-height 0.30s ease,
+            opacity 0.22s ease;
+    }
+
+    .submenu > * {
+        min-height: 0;
+    }
+
+    .submenu.abierto {
+        grid-template-rows: 1fr;
+        max-height: 500px;
+        opacity: 1;
+    }
+
+    .submenu-item {
+        transition:
+            color 0.20s ease,
+            background 0.20s ease;
+    }
+
+    .menu-flecha {
+        transition: transform 0.30s ease;
+    }
+
+    .menu-toggle.abierto .menu-flecha {
+        transform: rotate(180deg);
+    }
+
+    .sidebar.colapsado .submenu {
+        display: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .submenu,
+        .submenu-item,
+        .menu-flecha {
+            transition: none;
+        }
+    }
+`;
+document.head.appendChild(estiloAcordeon);
