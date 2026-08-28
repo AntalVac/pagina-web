@@ -126,45 +126,63 @@ if (btnMenu && sidebar) {
 
 
 /* =========================================================
-   SUBMENÚ DE DEFINICIONES
+   ACORDEÓN DEL MENÚ LATERAL
+   =========================================================
+   Solo puede haber un submenú abierto a la vez.
+   Al abrir uno, los demás se cierran.
+   Si se pulsa de nuevo sobre el que ya está abierto,
+   se cierra y quedan todos cerrados.
    ========================================================= */
 
-const btnDefiniciones = document.getElementById("btnDefiniciones");
-const submenuDefiniciones = document.getElementById("submenuDefiniciones");
+const gruposMenu = document.querySelectorAll(".menu-grupo");
 
-if (btnDefiniciones && submenuDefiniciones) {
-    btnDefiniciones.addEventListener("click", function () {
-        submenuDefiniciones.classList.toggle("abierto");
-        btnDefiniciones.classList.toggle("abierto");
+function cerrarTodosLosSubmenus(excepto) {
+    gruposMenu.forEach(function (grupo) {
+        const submenu = grupo.querySelector(".submenu");
+        const boton = grupo.querySelector(".menu-toggle");
+
+        if (!submenu) {
+            return;
+        }
+
+        if (grupo !== excepto) {
+            submenu.classList.remove("abierto");
+
+            if (boton) {
+                boton.classList.remove("abierto");
+                boton.setAttribute("aria-expanded", "false");
+            }
+        }
     });
 }
 
 
-/* =========================================================
-   SUBMENÚ DE MANIOBRAS
-   ========================================================= */
+gruposMenu.forEach(function (grupo) {
+    const boton = grupo.querySelector(".menu-toggle");
+    const submenu = grupo.querySelector(".submenu");
 
-const btnManiobras = document.getElementById("btnManiobras");
-const submenuManiobras = document.getElementById("submenuManiobras");
+    if (!boton || !submenu) {
+        return;
+    }
 
-if (btnManiobras && submenuManiobras) {
-    btnManiobras.addEventListener("click", function () {
-        submenuManiobras.classList.toggle("abierto");
-        btnManiobras.classList.toggle("abierto");
+    // Estado inicial accesible.
+    boton.setAttribute("aria-expanded", "false");
+
+    boton.addEventListener("click", function () {
+        const estabaAbierto = submenu.classList.contains("abierto");
+
+        // Primero cerramos todos los demás.
+        cerrarTodosLosSubmenus(grupo);
+
+        // Después abrimos/cerramos el actual.
+        if (estabaAbierto) {
+            submenu.classList.remove("abierto");
+            boton.classList.remove("abierto");
+            boton.setAttribute("aria-expanded", "false");
+        } else {
+            submenu.classList.add("abierto");
+            boton.classList.add("abierto");
+            boton.setAttribute("aria-expanded", "true");
+        }
     });
-}
-
-
-/* =========================================================
-   SUBMENÚ DE SEÑALIZACIÓN DE LA VÍA
-   ========================================================= */
-
-const btnSeñalizacion = document.getElementById("btnSeñalizacion");
-const submenuSeñalizacion = document.getElementById("submenuSeñalizacion");
-
-if (btnSeñalizacion && submenuSeñalizacion) {
-    btnSeñalizacion.addEventListener("click", function () {
-        submenuSeñalizacion.classList.toggle("abierto");
-        btnSeñalizacion.classList.toggle("abierto");
-    });
-}
+});
