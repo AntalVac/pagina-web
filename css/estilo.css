@@ -504,3 +504,22 @@ hr {
 .importante-contenido ul {
     margin: 0;
 }
+
+/*============================================
+
+            NOTA DE PREGUNTA DE EXAMEN
+
+=============================================*/
+
+.examen {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    gap: 10px;
+}
+
+.examen img {
+    width: 25px;
+    height: auto;
+    flex-shrink: 0;
+}
