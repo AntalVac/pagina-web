@@ -3,31 +3,346 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
 <title>AntalVac | Acceso al Aula Virtual</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="../css/aula.css">
 </head>
+
 <body class="aula-shell">
+
 <header class="aula-header">
-<a class="aula-logo" href="../index.html"><span class="ant">Antal</span><span class="vac">Vac</span><small>Formación Vial y Transporte</small></a>
+  <a class="aula-logo" href="../index.html">
+    <span class="ant">Antal</span><span class="vac">Vac</span>
+    <small>Formación Vial y Transporte</small>
+  </a>
 </header>
+
 <main class="aula-main">
+
 <section class="panel-card login-card">
-<span class="login-etiqueta">AULA VIRTUAL</span>
-<h1>Acceso de alumnos</h1>
-<p>Inicia sesión para realizar tests y consultar tus resultados.</p>
-<form id="login-form">
-<label for="email">Correo electrónico</label>
-<input id="email" name="email" type="email" autocomplete="email" required>
-<label for="password">Contraseña</label>
-<input id="password" name="password" type="password" autocomplete="current-password" required>
-<button class="aula-btn" type="submit">Entrar</button>
-<p id="mensaje" role="alert" aria-live="polite"></p>
-</form>
+
+  <span class="login-etiqueta">AULA VIRTUAL</span>
+
+  <h1>Acceso de alumnos</h1>
+
+  <p id="texto-intro">
+    Inicia sesión para realizar tests y consultar tus resultados.
+  </p>
+
+  <!-- LOGIN -->
+  <form id="login-form">
+
+    <label for="email">Correo electrónico</label>
+    <input
+      id="email"
+      name="email"
+      type="email"
+      autocomplete="email"
+      required
+    >
+
+    <label for="password">Contraseña</label>
+    <input
+      id="password"
+      name="password"
+      type="password"
+      autocomplete="current-password"
+      required
+    >
+
+    <button class="aula-btn" type="submit" id="btn-login">
+      Entrar
+    </button>
+
+    <p id="mensaje" role="alert" aria-live="polite"></p>
+
+  </form>
+
+  <hr>
+
+  <!-- REGISTRO -->
+  <div id="registro-bloque">
+
+    <h2>¿Eres nuevo alumno?</h2>
+
+    <p>Crea tu cuenta para acceder al Aula Virtual.</p>
+
+    <button class="aula-btn secundario" type="button" id="btn-mostrar-registro">
+      Crear cuenta
+    </button>
+
+  </div>
+
+  <!-- FORMULARIO DE REGISTRO -->
+  <form id="registro-form" hidden>
+
+    <h2>Crear cuenta</h2>
+
+    <label for="nombre">Nombre completo</label>
+    <input
+      id="nombre"
+      name="nombre"
+      type="text"
+      autocomplete="name"
+      required
+    >
+
+    <label for="registro-email">Correo electrónico</label>
+    <input
+      id="registro-email"
+      name="email"
+      type="email"
+      autocomplete="email"
+      required
+    >
+
+    <label for="registro-password">Contraseña</label>
+    <input
+      id="registro-password"
+      name="password"
+      type="password"
+      autocomplete="new-password"
+      minlength="6"
+      required
+    >
+
+    <button class="aula-btn" type="submit" id="btn-registro">
+      Crear cuenta
+    </button>
+
+    <button class="aula-btn secundario" type="button" id="btn-volver">
+      Volver al acceso
+    </button>
+
+    <p id="mensaje-registro" role="alert" aria-live="polite"></p>
+
+  </form>
+
 </section>
+
 </main>
-<footer class="aula-footer"><strong>AntalVac</strong> · Tu formación, nuestro destino</footer>
+
+<footer class="aula-footer">
+  <strong>AntalVac</strong> · Tu formación, nuestro destino
+</footer>
+
+
+<!-- Biblioteca oficial -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+/* ==========================================================
+   CONFIGURACIÓN DEL AULA VIRTUAL
+   ========================================================== */
+
+const SUPABASE_URL =
+  "https://bswzelbrwcbkppteegpf.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_TZmtWigR5f2DVq-cyU_JPg_GywEho69";
+
+
+/* Cliente */
+const cliente = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
+
+
+/* ==========================================================
+   ELEMENTOS
+   ========================================================== */
+
+const loginForm = document.getElementById("login-form");
+const registroForm = document.getElementById("registro-form");
+
+const registroBloque =
+  document.getElementById("registro-bloque");
+
+const mensaje =
+  document.getElementById("mensaje");
+
+const mensajeRegistro =
+  document.getElementById("mensaje-registro");
+
+
+/* ==========================================================
+   COMPROBAR SI YA EXISTE UNA SESIÓN
+   ========================================================== */
+
+(async function comprobarSesion() {
+
+  const { data } = await cliente.auth.getSession();
+
+  if (data.session) {
+    window.location.href = "alumno.html";
+  }
+
+})();
+
+
+/* ==========================================================
+   LOGIN
+   ========================================================== */
+
+loginForm.addEventListener("submit", async function(event) {
+
+  event.preventDefault();
+
+  mensaje.textContent = "Comprobando acceso...";
+  mensaje.className = "";
+
+  const email =
+    document.getElementById("email").value.trim();
+
+  const password =
+    document.getElementById("password").value;
+
+
+  const { data, error } =
+    await cliente.auth.signInWithPassword({
+      email: email,
+      password: password
+    });
+
+
+  if (error) {
+
+    console.error(error);
+
+    mensaje.textContent =
+      "No se ha podido iniciar sesión. Comprueba el correo y la contraseña.";
+
+    return;
+  }
+
+
+  if (data.session) {
+
+    mensaje.textContent =
+      "Acceso correcto. Entrando al Aula Virtual...";
+
+    window.location.href = "alumno.html";
+
+  }
+
+});
+
+
+/* ==========================================================
+   MOSTRAR REGISTRO
+   ========================================================== */
+
+document
+  .getElementById("btn-mostrar-registro")
+  .addEventListener("click", function() {
+
+    loginForm.hidden = true;
+    registroBloque.hidden = true;
+    registroForm.hidden = false;
+
+    mensaje.textContent = "";
+
+  });
+
+
+/* ==========================================================
+   VOLVER AL LOGIN
+   ========================================================== */
+
+document
+  .getElementById("btn-volver")
+  .addEventListener("click", function() {
+
+    registroForm.hidden = true;
+    loginForm.hidden = false;
+    registroBloque.hidden = false;
+
+    mensajeRegistro.textContent = "";
+
+  });
+
+
+/* ==========================================================
+   REGISTRO DE ALUMNO
+   ========================================================== */
+
+registroForm.addEventListener("submit", async function(event) {
+
+  event.preventDefault();
+
+  mensajeRegistro.textContent =
+    "Creando cuenta...";
+
+
+  const nombre =
+    document.getElementById("nombre").value.trim();
+
+  const email =
+    document.getElementById("registro-email").value.trim();
+
+  const password =
+    document.getElementById("registro-password").value;
+
+
+  const { data, error } =
+    await cliente.auth.signUp({
+
+      email: email,
+
+      password: password,
+
+      options: {
+        data: {
+          full_name: nombre
+        }
+      }
+
+    });
+
+
+  if (error) {
+
+    console.error(error);
+
+    mensajeRegistro.textContent =
+      "No se ha podido crear la cuenta: " + error.message;
+
+    return;
+  }
+
+
+  /*
+   * Si Supabase requiere confirmación por correo,
+   * normalmente no habrá sesión todavía.
+   */
+
+  if (!data.session) {
+
+    mensajeRegistro.textContent =
+      "Cuenta creada. Revisa tu correo electrónico para confirmar la cuenta.";
+
+    registroForm.reset();
+
+    return;
+  }
+
+
+  /* Si la confirmación no es necesaria,
+     entramos directamente. */
+
+  mensajeRegistro.textContent =
+    "Cuenta creada correctamente. Entrando...";
+
+  window.location.href = "alumno.html";
+
+});
+</script>
+
 </body>
 </html>
