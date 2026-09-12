@@ -19,7 +19,7 @@
     <div class="aula-titulo">🎓 Aula Virtual</div>
     <div class="alumno">
         <span class="alumno-avatar">👤</span>
-        <span><strong>Alumno de prueba</strong><small>Sesión de práctica</small></span>
+        <span><strong id="nombre-alumno">Alumno</strong><small><a href="alumno.html" style="color:inherit">Mi aula</a></small></span>
     </div>
 </header>
 
@@ -43,11 +43,7 @@
                     <span>Pregunta</span>
                 </div>
                 <h2 id="texto-pregunta">Cargando pregunta...</h2>
-
-                <div id="respuestas" class="respuestas" role="radiogroup" aria-label="Respuestas">
-                    <!-- Las respuestas se generan con JavaScript -->
-                </div>
-
+                <div id="respuestas" class="respuestas" role="radiogroup" aria-label="Respuestas"></div>
                 <div class="navegacion">
                     <button id="btn-anterior" class="btn btn-secundario" type="button">← Anterior</button>
                     <button id="btn-siguiente" class="btn btn-principal" type="button">Siguiente →</button>
@@ -61,7 +57,6 @@
                     <div class="barra-tiempo"><span id="barra-tiempo"></span></div>
                     <small>El test finalizará automáticamente al llegar a 00:00.</small>
                 </div>
-
                 <div class="preguntas-card">
                     <h2>Preguntas</h2>
                     <div id="navegador-preguntas" class="navegador-preguntas" aria-label="Navegación de preguntas"></div>
@@ -82,32 +77,29 @@
             <div id="resultado-icono" class="resultado-icono">✓</div>
             <h1 id="resultado-titulo">APTO</h1>
             <p id="resultado-subtitulo">Has superado el test de práctica.</p>
-
             <div class="resultado-datos">
                 <div><strong id="resultado-aciertos">0 / 10</strong><span>Aciertos</span></div>
                 <div><strong id="resultado-porcentaje">0 %</strong><span>Porcentaje</span></div>
                 <div><strong id="resultado-tiempo">00:00</strong><span>Tiempo empleado</span></div>
             </div>
-
             <div class="criterio">Criterio de esta práctica: <strong>7 aciertos de 10</strong>.</div>
-
             <div class="resultado-acciones">
                 <button id="btn-repetir" class="btn btn-principal" type="button">Repetir test</button>
-                <a class="btn btn-secundario" href="../index.html">Volver al inicio</a>
+                <a class="btn btn-secundario" href="alumno.html">Mi historial</a>
             </div>
         </div>
-
         <div class="revision-card">
             <h2>Revisión de respuestas</h2>
             <div id="revision"></div>
         </div>
     </section>
 </main>
-
-<footer class="examen-footer">
-    <strong>AntalVac</strong> · Tu formación, nuestro destino
-</footer>
-
+<footer class="examen-footer"><strong>AntalVac</strong> · Tu formación, nuestro destino</footer>
+<script src="../js/auth.js"></script>
 <script src="../js/examen.js"></script>
+<script>
+const sesion=getSesion();
+if(sesion){document.getElementById('nombre-alumno').textContent=sesion.nombre;}
+</script>
 </body>
 </html>
