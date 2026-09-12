@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AntalVac Aula Virtual - Test de práctica.">
+    <title>AntalVac | Test de práctica</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/examen.css">
+</head>
+<body class="examen-body">
+<header class="examen-header">
+    <a class="examen-marca" href="../index.html" aria-label="Volver a AntalVac">
+        <span class="marca-ant">Antal</span><span class="marca-vac">Vac</span>
+        <small>Formación Vial y Transporte</small>
+    </a>
+    <div class="aula-titulo">🎓 Aula Virtual</div>
+    <div class="alumno">
+        <span class="alumno-avatar">👤</span>
+        <span><strong>Alumno de prueba</strong><small>Sesión de práctica</small></span>
+    </div>
+</header>
+
+<main class="examen-app">
+    <section id="pantalla-examen" aria-label="Examen">
+        <div class="cabecera-test">
+            <div>
+                <span class="eyebrow">TEST DE PRÁCTICA</span>
+                <h1>Permiso B · Normativa general</h1>
+            </div>
+            <div class="progreso-wrap">
+                <div class="progreso-texto"><span id="pregunta-actual-texto">Pregunta 1 de 10</span></div>
+                <div class="barra-progreso"><span id="barra-progreso"></span></div>
+            </div>
+        </div>
+
+        <div class="examen-grid">
+            <section class="pregunta-card">
+                <div class="pregunta-cabecera">
+                    <span class="numero-pregunta" id="numero-pregunta">1</span>
+                    <span>Pregunta</span>
+                </div>
+                <h2 id="texto-pregunta">Cargando pregunta...</h2>
+
+                <div id="respuestas" class="respuestas" role="radiogroup" aria-label="Respuestas">
+                    <!-- Las respuestas se generan con JavaScript -->
+                </div>
+
+                <div class="navegacion">
+                    <button id="btn-anterior" class="btn btn-secundario" type="button">← Anterior</button>
+                    <button id="btn-siguiente" class="btn btn-principal" type="button">Siguiente →</button>
+                </div>
+            </section>
+
+            <aside class="panel-lateral">
+                <div class="cronometro-card" id="cronometro-card">
+                    <span class="cronometro-etiqueta">Tiempo restante</span>
+                    <div class="cronometro" id="cronometro" aria-live="polite">15:00</div>
+                    <div class="barra-tiempo"><span id="barra-tiempo"></span></div>
+                    <small>El test finalizará automáticamente al llegar a 00:00.</small>
+                </div>
+
+                <div class="preguntas-card">
+                    <h2>Preguntas</h2>
+                    <div id="navegador-preguntas" class="navegador-preguntas" aria-label="Navegación de preguntas"></div>
+                    <div class="leyenda">
+                        <span><i class="actual"></i> Actual</span>
+                        <span><i class="respondida"></i> Respondida</span>
+                        <span><i class="sin-responder"></i> Sin responder</span>
+                    </div>
+                    <button id="btn-finalizar" class="btn btn-finalizar" type="button">Finalizar test</button>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <section id="pantalla-resultado" class="resultado oculto" aria-label="Resultado del test" aria-live="polite">
+        <div class="resultado-card">
+            <span class="resultado-etiqueta">RESULTADO DEL TEST</span>
+            <div id="resultado-icono" class="resultado-icono">✓</div>
+            <h1 id="resultado-titulo">APTO</h1>
+            <p id="resultado-subtitulo">Has superado el test de práctica.</p>
+
+            <div class="resultado-datos">
+                <div><strong id="resultado-aciertos">0 / 10</strong><span>Aciertos</span></div>
+                <div><strong id="resultado-porcentaje">0 %</strong><span>Porcentaje</span></div>
+                <div><strong id="resultado-tiempo">00:00</strong><span>Tiempo empleado</span></div>
+            </div>
+
+            <div class="criterio">Criterio de esta práctica: <strong>7 aciertos de 10</strong>.</div>
+
+            <div class="resultado-acciones">
+                <button id="btn-repetir" class="btn btn-principal" type="button">Repetir test</button>
+                <a class="btn btn-secundario" href="../index.html">Volver al inicio</a>
+            </div>
+        </div>
+
+        <div class="revision-card">
+            <h2>Revisión de respuestas</h2>
+            <div id="revision"></div>
+        </div>
+    </section>
+</main>
+
+<footer class="examen-footer">
+    <strong>AntalVac</strong> · Tu formación, nuestro destino
+</footer>
+
+<script src="../js/examen.js"></script>
+</body>
+</html>
