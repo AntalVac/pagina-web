@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>AntalVac | Mi Aula</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="../css/aula.css"></head>
+<body class="aula-shell">
+<header class="aula-header"><a class="aula-logo" href="../index.html"><span class="ant">Antal</span><span class="vac">Vac</span><small>Formación Vial y Transporte</small></a><div><a class="aula-header-link" href="examen.html">Ir a los tests →</a></div></header>
+<main class="aula-main">
+<div class="panel-superior"><div><span class="login-etiqueta">AULA VIRTUAL</span><h1>Mi formación</h1><p>Consulta tus resultados y continúa practicando.</p></div><div class="panel-acciones"><button class="aula-btn secundario" id="btn-salir" type="button">Cerrar sesión</button></div></div>
+<div class="resumen"><div class="panel-card"><strong id="total-tests">0</strong><span>Tests realizados</span></div><div class="panel-card"><strong id="tests-aprobados">0</strong><span>Tests aptos</span></div><div class="panel-card"><strong id="media">0 %</strong><span>Media de aciertos</span></div></div>
+<section class="panel-card historial-card"><h2>Historial de resultados</h2><div class="tabla-wrap"><table class="historial-tabla"><thead><tr><th>Fecha</th><th>Test</th><th>Resultado</th><th>Aciertos</th><th>Porcentaje</th><th>Tiempo</th></tr></thead><tbody id="historial"><tr><td colspan="6" class="sin-resultados">Todavía no has realizado ningún test.</td></tr></tbody></table></div></section>
+</main><footer class="aula-footer"><strong>AntalVac</strong> · Tu formación, nuestro destino</footer>
+<script src="../js/auth.js"></script><script>
+const sesion=exigirSesion();
+if(sesion){document.querySelector('.panel-superior p').textContent=`Bienvenido/a, ${sesion.nombre}. Consulta tus resultados y continúa practicando.`;document.getElementById('btn-salir').addEventListener('click',cerrarSesion);const historial=obtenerHistorial();const tbody=document.getElementById('historial');if(historial.length){tbody.innerHTML=historial.map(r=>{const fecha=new Date(r.fecha).toLocaleString('es-ES',{dateStyle:'short',timeStyle:'short'});return `<tr><td>${fecha}</td><td>${r.test}</td><td><span class="badge ${r.apto?'apto':'no-apto'}">${r.apto?'APTO':'NO APTO'}</span></td><td>${r.aciertos} / ${r.total}</td><td>${r.porcentaje} %</td><td>${r.tiempo}</td></tr>`}).join('');document.getElementById('total-tests').textContent=historial.length;document.getElementById('tests-aprobados').textContent=historial.filter(r=>r.apto).length;document.getElementById('media').textContent=Math.round(historial.reduce((s,r)=>s+r.porcentaje,0)/historial.length)+' %';}}
+</script></body></html>
