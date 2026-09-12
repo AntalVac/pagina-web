@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AntalVac | Acceso al Aula Virtual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/aula.css">
+</head>
+<body class="aula-shell">
+<header class="aula-header">
+<a class="aula-logo" href="../index.html"><span class="ant">Antal</span><span class="vac">Vac</span><small>Formación Vial y Transporte</small></a>
+</header>
+<main class="aula-main">
+<section class="panel-card login-card">
+<span class="login-etiqueta">AULA VIRTUAL</span>
+<h1>Acceso de alumnos</h1>
+<p>Inicia sesión para realizar tests y consultar tus resultados.</p>
+<form id="login-form">
+<label for="email">Correo electrónico</label>
+<input id="email" name="email" type="email" autocomplete="email" required>
+<label for="password">Contraseña</label>
+<input id="password" name="password" type="password" autocomplete="current-password" required>
+<button class="aula-btn" type="submit">Entrar</button>
+<p id="mensaje" role="alert" aria-live="polite"></p>
+</form>
+</section>
+</main>
+<footer class="aula-footer"><strong>AntalVac</strong> · Tu formación, nuestro destino</footer>
+</body>
+</html>
