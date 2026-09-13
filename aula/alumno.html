@@ -1,14 +1,513 @@
 <!DOCTYPE html>
 <html lang="es">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>AntalVac | Mi Aula</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="../css/aula.css"></head>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>AntalVac | Mi Aula</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/aula.css">
+</head>
+
 <body class="aula-shell">
-<header class="aula-header"><a class="aula-logo" href="../index.html"><span class="ant">Antal</span><span class="vac">Vac</span><small>Formación Vial y Transporte</small></a><div><a class="aula-header-link" href="examen.html">Ir a los tests →</a></div></header>
+
+<header class="aula-header">
+
+  <a class="aula-logo" href="../index.html">
+    <span class="ant">Antal</span><span class="vac">Vac</span>
+    <small>Formación Vial y Transporte</small>
+  </a>
+
+  <div>
+    <a class="aula-header-link" href="examen.html">
+      Ir a los tests →
+    </a>
+  </div>
+
+</header>
+
+
 <main class="aula-main">
-<div class="panel-superior"><div><span class="login-etiqueta">AULA VIRTUAL</span><h1>Mi formación</h1><p>Consulta tus resultados y continúa practicando.</p></div><div class="panel-acciones"><button class="aula-btn secundario" id="btn-salir" type="button">Cerrar sesión</button></div></div>
-<div class="resumen"><div class="panel-card"><strong id="total-tests">0</strong><span>Tests realizados</span></div><div class="panel-card"><strong id="tests-aprobados">0</strong><span>Tests aptos</span></div><div class="panel-card"><strong id="media">0 %</strong><span>Media de aciertos</span></div></div>
-<section class="panel-card historial-card"><h2>Historial de resultados</h2><div class="tabla-wrap"><table class="historial-tabla"><thead><tr><th>Fecha</th><th>Test</th><th>Resultado</th><th>Aciertos</th><th>Porcentaje</th><th>Tiempo</th></tr></thead><tbody id="historial"><tr><td colspan="6" class="sin-resultados">Todavía no has realizado ningún test.</td></tr></tbody></table></div></section>
-</main><footer class="aula-footer"><strong>AntalVac</strong> · Tu formación, nuestro destino</footer>
-<script src="../js/auth.js"></script><script>
-const sesion=exigirSesion();
-if(sesion){document.querySelector('.panel-superior p').textContent=`Bienvenido/a, ${sesion.nombre}. Consulta tus resultados y continúa practicando.`;document.getElementById('btn-salir').addEventListener('click',cerrarSesion);const historial=obtenerHistorial();const tbody=document.getElementById('historial');if(historial.length){tbody.innerHTML=historial.map(r=>{const fecha=new Date(r.fecha).toLocaleString('es-ES',{dateStyle:'short',timeStyle:'short'});return `<tr><td>${fecha}</td><td>${r.test}</td><td><span class="badge ${r.apto?'apto':'no-apto'}">${r.apto?'APTO':'NO APTO'}</span></td><td>${r.aciertos} / ${r.total}</td><td>${r.porcentaje} %</td><td>${r.tiempo}</td></tr>`}).join('');document.getElementById('total-tests').textContent=historial.length;document.getElementById('tests-aprobados').textContent=historial.filter(r=>r.apto).length;document.getElementById('media').textContent=Math.round(historial.reduce((s,r)=>s+r.porcentaje,0)/historial.length)+' %';}}
-</script></body></html>
+
+  <div class="panel-superior">
+
+    <div>
+      <span class="login-etiqueta">AULA VIRTUAL</span>
+
+      <h1>Mi formación</h1>
+
+      <p id="bienvenida">
+        Cargando tu información...
+      </p>
+    </div>
+
+    <div class="panel-acciones">
+
+      <button
+        class="aula-btn secundario"
+        id="btn-salir"
+        type="button">
+        Cerrar sesión
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="resumen">
+
+    <div class="panel-card">
+      <strong id="total-tests">0</strong>
+      <span>Tests realizados</span>
+    </div>
+
+    <div class="panel-card">
+      <strong id="tests-aprobados">0</strong>
+      <span>Tests aptos</span>
+    </div>
+
+    <div class="panel-card">
+      <strong id="media">0 %</strong>
+      <span>Media de aciertos</span>
+    </div>
+
+  </div>
+
+
+  <section class="panel-card historial-card">
+
+    <h2>Historial de resultados</h2>
+
+    <div class="tabla-wrap">
+
+      <table class="historial-tabla">
+
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Test</th>
+            <th>Resultado</th>
+            <th>Aciertos</th>
+            <th>Porcentaje</th>
+            <th>Tiempo</th>
+          </tr>
+        </thead>
+
+        <tbody id="historial">
+
+          <tr>
+            <td colspan="6" class="sin-resultados">
+              Cargando resultados...
+            </td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer class="aula-footer">
+  <strong>AntalVac</strong> · Tu formación, nuestro destino
+</footer>
+
+
+<!-- =====================================================
+     SUPABASE
+     ===================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<script>
+
+const SUPABASE_URL =
+  "https://bswzelbrwcbkppteegpf.supabase.co";
+
+/*
+ * IMPORTANTE:
+ * Copia aquí EXACTAMENTE la misma clave publishable
+ * que ya tienes en aula/login.html.
+ *
+ * No utilices una service_role ni una secret key.
+ */
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_TZmtWigR5f2DVq-cyU_JPg_GywEho69";
+
+
+const cliente = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
+
+
+/* =====================================================
+   ELEMENTOS DE LA PÁGINA
+   ===================================================== */
+
+const bienvenida =
+  document.getElementById("bienvenida");
+
+const historialElemento =
+  document.getElementById("historial");
+
+const totalTests =
+  document.getElementById("total-tests");
+
+const testsAprobados =
+  document.getElementById("tests-aprobados");
+
+const media =
+  document.getElementById("media");
+
+const botonSalir =
+  document.getElementById("btn-salir");
+
+
+/* =====================================================
+   FORMATO DEL TIEMPO
+   ===================================================== */
+
+function formatearTiempo(segundos) {
+
+  segundos = Number(segundos) || 0;
+
+  const minutos =
+    Math.floor(segundos / 60);
+
+  const segundosRestantes =
+    segundos % 60;
+
+  return (
+    String(minutos).padStart(2, "0")
+    + ":" +
+    String(segundosRestantes).padStart(2, "0")
+  );
+}
+
+
+/* =====================================================
+   CARGAR AULA DEL ALUMNO
+   ===================================================== */
+
+async function cargarAula() {
+
+  /*
+   * Comprobamos la sesión REAL de Supabase.
+   */
+
+  const {
+    data: sessionData,
+    error: sessionError
+  } = await cliente.auth.getSession();
+
+
+  if (sessionError) {
+
+    console.error(
+      "Error comprobando sesión:",
+      sessionError
+    );
+
+    window.location.href = "login.html";
+
+    return;
+  }
+
+
+  const session =
+    sessionData.session;
+
+
+  /*
+   * Si no existe sesión, volvemos al Login.
+   *
+   * IMPORTANTE:
+   * Ya NO usamos exigirSesion() de auth.js.
+   */
+
+  if (!session) {
+
+    window.location.href = "login.html";
+
+    return;
+  }
+
+
+  const usuario =
+    session.user;
+
+
+  /* ===================================================
+     OBTENER PERFIL
+     =================================================== */
+
+  let nombre =
+    usuario.user_metadata?.full_name
+    || "Alumno";
+
+
+  const {
+    data: perfil,
+    error: perfilError
+  } = await cliente
+    .from("profiles")
+    .select("full_name")
+    .eq("id", usuario.id)
+    .maybeSingle();
+
+
+  if (!perfilError && perfil?.full_name) {
+
+    nombre =
+      perfil.full_name;
+
+  }
+
+
+  bienvenida.textContent =
+    `Bienvenido/a, ${nombre}. Consulta tus resultados y continúa practicando.`;
+
+
+  /* ===================================================
+     OBTENER HISTORIAL
+     =================================================== */
+
+  const {
+    data: resultados,
+    error: resultadosError
+  } = await cliente
+    .from("attempts")
+    .select(`
+      id,
+      test_name,
+      total_questions,
+      correct_answers,
+      percentage,
+      passed,
+      elapsed_seconds,
+      created_at
+    `)
+    .eq("user_id", usuario.id)
+    .order("created_at", {
+      ascending: false
+    });
+
+
+  if (resultadosError) {
+
+    console.error(
+      "Error cargando resultados:",
+      resultadosError
+    );
+
+    historialElemento.innerHTML = `
+      <tr>
+        <td colspan="6" class="sin-resultados">
+          No se han podido cargar los resultados.
+        </td>
+      </tr>
+    `;
+
+    return;
+  }
+
+
+  const historial =
+    resultados || [];
+
+
+  /* ===================================================
+     RESUMEN
+     =================================================== */
+
+  totalTests.textContent =
+    historial.length;
+
+
+  const aprobados =
+    historial.filter(
+      resultado => resultado.passed
+    ).length;
+
+
+  testsAprobados.textContent =
+    aprobados;
+
+
+  if (historial.length > 0) {
+
+    const suma =
+      historial.reduce(
+        (total, resultado) =>
+          total + Number(resultado.percentage || 0),
+        0
+      );
+
+    const promedio =
+      Math.round(
+        suma / historial.length
+      );
+
+    media.textContent =
+      `${promedio} %`;
+
+  } else {
+
+    media.textContent =
+      "0 %";
+  }
+
+
+  /* ===================================================
+     TABLA
+     =================================================== */
+
+  if (historial.length === 0) {
+
+    historialElemento.innerHTML = `
+      <tr>
+        <td colspan="6" class="sin-resultados">
+          Todavía no has realizado ningún test.
+        </td>
+      </tr>
+    `;
+
+    return;
+  }
+
+
+  historialElemento.innerHTML =
+    historial.map(resultado => {
+
+      const fecha =
+        new Date(
+          resultado.created_at
+        ).toLocaleString(
+          "es-ES",
+          {
+            dateStyle: "short",
+            timeStyle: "short"
+          }
+        );
+
+
+      const apto =
+        Boolean(resultado.passed);
+
+
+      const resultadoTexto =
+        apto
+          ? "APTO"
+          : "NO APTO";
+
+
+      const claseResultado =
+        apto
+          ? "apto"
+          : "no-apto";
+
+
+      return `
+        <tr>
+
+          <td>
+            ${fecha}
+          </td>
+
+          <td>
+            ${resultado.test_name}
+          </td>
+
+          <td>
+            <span class="badge ${claseResultado}">
+              ${resultadoTexto}
+            </span>
+          </td>
+
+          <td>
+            ${resultado.correct_answers}
+            /
+            ${resultado.total_questions}
+          </td>
+
+          <td>
+            ${resultado.percentage} %
+          </td>
+
+          <td>
+            ${formatearTiempo(
+              resultado.elapsed_seconds
+            )}
+          </td>
+
+        </tr>
+      `;
+
+    }).join("");
+
+}
+
+
+/* =====================================================
+   CERRAR SESIÓN
+   ===================================================== */
+
+botonSalir.addEventListener(
+  "click",
+  async function() {
+
+    botonSalir.disabled = true;
+
+    botonSalir.textContent =
+      "Cerrando sesión...";
+
+
+    const {
+      error
+    } = await cliente.auth.signOut();
+
+
+    if (error) {
+
+      console.error(
+        "Error cerrando sesión:",
+        error
+      );
+
+      botonSalir.disabled = false;
+
+      botonSalir.textContent =
+        "Cerrar sesión";
+
+      return;
+    }
+
+
+    window.location.href =
+      "login.html";
+
+  }
+);
+
+
+/* =====================================================
+   ARRANCAR
+   ===================================================== */
+
+cargarAula();
+
+</script>
+
+</body>
+</html>
