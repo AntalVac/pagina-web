@@ -6,9 +6,9 @@
 const DURACION_SEGUNDOS = 15 * 60;
 const MINIMO_APTO = 7;
 
-// ------------------------------------------------------------
+// ============================================================
 // PREGUNTAS
-// ------------------------------------------------------------
+// ============================================================
 
 const preguntas = [
     {
@@ -113,9 +113,9 @@ const preguntas = [
     }
 ];
 
-// ------------------------------------------------------------
-// VARIABLES DEL EXAMEN
-// ------------------------------------------------------------
+// ============================================================
+// VARIABLES
+// ============================================================
 
 let preguntaActual = 0;
 let respuestasUsuario = Array(preguntas.length).fill(null);
@@ -128,66 +128,121 @@ let guardandoResultado = false;
 
 let usuarioActual = null;
 
-// ------------------------------------------------------------
-// ELEMENTOS HTML
-// ------------------------------------------------------------
+// ============================================================
+// ELEMENTOS DEL HTML
+// ============================================================
 
-const pantallaExamen = document.getElementById("pantalla-examen");
-const pantallaResultado = document.getElementById("pantalla-resultado");
+const pantallaExamen =
+    document.getElementById("pantalla-examen");
 
-const textoPregunta = document.getElementById("texto-pregunta");
-const opcionesContainer = document.getElementById("opciones");
+const pantallaResultado =
+    document.getElementById("pantalla-resultado");
 
-const numeroPregunta = document.getElementById("numero-pregunta");
-const totalPreguntas = document.getElementById("total-preguntas");
+const textoPregunta =
+    document.getElementById("texto-pregunta");
 
-const progreso = document.getElementById("progreso");
-const contador = document.getElementById("contador");
+const respuestasContainer =
+    document.getElementById("respuestas");
 
-const btnAnterior = document.getElementById("btn-anterior");
-const btnSiguiente = document.getElementById("btn-siguiente");
-const btnFinalizar = document.getElementById("btn-finalizar");
+const numeroPregunta =
+    document.getElementById("numero-pregunta");
 
-const btnRepetir = document.getElementById("btn-repetir");
+const preguntaActualTexto =
+    document.getElementById("pregunta-actual-texto");
 
-const resultadoTitulo = document.getElementById("resultado-titulo");
-const resultadoPuntuacion = document.getElementById("resultado-puntuacion");
-const resultadoPorcentaje = document.getElementById("resultado-porcentaje");
-const resultadoTiempo = document.getElementById("resultado-tiempo");
-const resultadoRevision = document.getElementById("resultado-revision");
+const barraProgreso =
+    document.getElementById("barra-progreso");
 
-const resultadoCard = document.querySelector(".resultado-card");
+const cronometro =
+    document.getElementById("cronometro");
 
-const nombreAlumno = document.getElementById("nombre-alumno");
+const barraTiempo =
+    document.getElementById("barra-tiempo");
 
-// ------------------------------------------------------------
-// INICIO SEGURO DEL EXAMEN
-// ------------------------------------------------------------
+const navegadorPreguntas =
+    document.getElementById("navegador-preguntas");
+
+const btnAnterior =
+    document.getElementById("btn-anterior");
+
+const btnSiguiente =
+    document.getElementById("btn-siguiente");
+
+const btnFinalizar =
+    document.getElementById("btn-finalizar");
+
+const btnRepetir =
+    document.getElementById("btn-repetir");
+
+const nombreAlumno =
+    document.getElementById("nombre-alumno");
+
+const resultadoTitulo =
+    document.getElementById("resultado-titulo");
+
+const resultadoIcono =
+    document.getElementById("resultado-icono");
+
+const resultadoAciertos =
+    document.getElementById("resultado-aciertos");
+
+const resultadoPorcentaje =
+    document.getElementById("resultado-porcentaje");
+
+const resultadoTiempo =
+    document.getElementById("resultado-tiempo");
+
+const revision =
+    document.getElementById("revision");
+
+const resultadoCard =
+    document.querySelector(".resultado-card");
+
+// ============================================================
+// COMPROBAR SESIÓN
+// ============================================================
 
 async function iniciarExamenSeguro() {
 
     try {
 
         if (typeof cliente === "undefined") {
-            console.error("No se ha encontrado el cliente de Supabase.");
+
+            console.error(
+                "No se ha encontrado el cliente de Supabase."
+            );
+
             window.location.href = "login.html";
+
             return;
         }
 
-        const { data, error } = await cliente.auth.getSession();
+        const {
+            data,
+            error
+        } = await cliente.auth.getSession();
 
         if (error) {
-            console.error("Error comprobando la sesión:", error);
+
+            console.error(
+                "Error comprobando la sesión:",
+                error
+            );
+
             window.location.href = "login.html";
+
             return;
         }
 
         if (!data.session) {
+
             window.location.href = "login.html";
+
             return;
         }
 
-        usuarioActual = data.session.user;
+        usuarioActual =
+            data.session.user;
 
         const nombre =
             usuarioActual.user_metadata?.full_name ||
@@ -195,11 +250,9 @@ async function iniciarExamenSeguro() {
             "Alumno";
 
         if (nombreAlumno) {
-            nombreAlumno.textContent = nombre;
-        }
 
-        if (totalPreguntas) {
-            totalPreguntas.textContent = preguntas.length;
+            nombreAlumno.textContent =
+                nombre;
         }
 
         actualizarCronometro();
@@ -208,54 +261,88 @@ async function iniciarExamenSeguro() {
 
     } catch (error) {
 
-        console.error("Error iniciando el examen:", error);
-        window.location.href = "login.html";
+        console.error(
+            "Error iniciando el examen:",
+            error
+        );
+
+        window.location.href =
+            "login.html";
     }
 }
 
-// ------------------------------------------------------------
+// ============================================================
 // MOSTRAR PREGUNTA
-// ------------------------------------------------------------
+// ============================================================
 
 function mostrarPregunta() {
 
-    const pregunta = preguntas[preguntaActual];
+    const pregunta =
+        preguntas[preguntaActual];
 
-    numeroPregunta.textContent = preguntaActual + 1;
-    textoPregunta.textContent = pregunta.pregunta;
+    numeroPregunta.textContent =
+        preguntaActual + 1;
 
-    opcionesContainer.innerHTML = "";
+    preguntaActualTexto.textContent =
+        `Pregunta ${preguntaActual + 1} de ${preguntas.length}`;
 
-    pregunta.opciones.forEach((opcion, indice) => {
+    textoPregunta.textContent =
+        pregunta.pregunta;
 
-        const boton = document.createElement("button");
+    respuestasContainer.innerHTML =
+        "";
 
-        boton.type = "button";
-        boton.className = "opcion";
+    pregunta.opciones.forEach(
+        (opcion, indice) => {
 
-        boton.innerHTML = `
-            <span class="letra-opcion">${String.fromCharCode(65 + indice)}</span>
-            <span>${opcion}</span>
-        `;
+            const boton =
+                document.createElement("button");
 
-        if (respuestasUsuario[preguntaActual] === indice) {
-            boton.classList.add("seleccionada");
+            boton.type =
+                "button";
+
+            boton.className =
+                "respuesta";
+
+            boton.innerHTML = `
+                <span class="respuesta-radio"></span>
+                <span class="respuesta-letra">
+                    ${String.fromCharCode(65 + indice)}
+                </span>
+                <span class="respuesta-texto">
+                    ${opcion}
+                </span>
+            `;
+
+            if (
+                respuestasUsuario[preguntaActual] ===
+                indice
+            ) {
+
+                boton.classList.add(
+                    "seleccionada"
+                );
+            }
+
+            boton.addEventListener(
+                "click",
+                () => seleccionarRespuesta(indice)
+            );
+
+            respuestasContainer.appendChild(
+                boton
+            );
         }
-
-        boton.addEventListener("click", () => {
-            seleccionarRespuesta(indice);
-        });
-
-        opcionesContainer.appendChild(boton);
-    });
+    );
 
     actualizarNavegacion();
     actualizarProgreso();
+    actualizarNavegadorPreguntas();
 }
 
-// ------------------------------------------------------------
+// ============================================================
 // SELECCIONAR RESPUESTA
-// ------------------------------------------------------------
+// ============================================================
 
 function seleccionarRespuesta(indice) {
 
@@ -263,35 +350,43 @@ function seleccionarRespuesta(indice) {
         return;
     }
 
-    respuestasUsuario[preguntaActual] = indice;
+    respuestasUsuario[preguntaActual] =
+        indice;
 
-    const botones = opcionesContainer.querySelectorAll(".opcion");
-
-    botones.forEach((boton, i) => {
-        boton.classList.toggle(
-            "seleccionada",
-            i === indice
-        );
-    });
-
-    actualizarNavegacion();
-    actualizarProgreso();
+    mostrarPregunta();
 }
 
-// ------------------------------------------------------------
+// ============================================================
 // NAVEGACIÓN
-// ------------------------------------------------------------
+// ============================================================
 
 function actualizarNavegacion() {
 
-    btnAnterior.disabled = preguntaActual === 0;
+    btnAnterior.disabled =
+        preguntaActual === 0;
 
-    if (preguntaActual === preguntas.length - 1) {
-        btnSiguiente.classList.add("oculto");
-        btnFinalizar.classList.remove("oculto");
+    if (
+        preguntaActual ===
+        preguntas.length - 1
+    ) {
+
+        btnSiguiente.classList.add(
+            "oculto"
+        );
+
+        btnFinalizar.classList.remove(
+            "oculto"
+        );
+
     } else {
-        btnSiguiente.classList.remove("oculto");
-        btnFinalizar.classList.add("oculto");
+
+        btnSiguiente.classList.remove(
+            "oculto"
+        );
+
+        btnFinalizar.classList.add(
+            "oculto"
+        );
     }
 }
 
@@ -301,7 +396,10 @@ function siguientePregunta() {
         return;
     }
 
-    if (preguntaActual < preguntas.length - 1) {
+    if (
+        preguntaActual <
+        preguntas.length - 1
+    ) {
 
         preguntaActual++;
 
@@ -323,108 +421,241 @@ function anteriorPregunta() {
     }
 }
 
-// ------------------------------------------------------------
+// ============================================================
+// NAVEGADOR DE PREGUNTAS
+// ============================================================
+
+function actualizarNavegadorPreguntas() {
+
+    if (!navegadorPreguntas) {
+        return;
+    }
+
+    navegadorPreguntas.innerHTML =
+        "";
+
+    preguntas.forEach(
+        (_, indice) => {
+
+            const boton =
+                document.createElement("button");
+
+            boton.type =
+                "button";
+
+            boton.className =
+                "nav-pregunta";
+
+            boton.textContent =
+                indice + 1;
+
+            if (
+                indice === preguntaActual
+            ) {
+
+                boton.classList.add(
+                    "actual"
+                );
+            }
+
+            if (
+                respuestasUsuario[indice] !==
+                null
+            ) {
+
+                boton.classList.add(
+                    "respondida"
+                );
+            }
+
+            boton.addEventListener(
+                "click",
+                () => {
+
+                    if (examenFinalizado) {
+                        return;
+                    }
+
+                    preguntaActual =
+                        indice;
+
+                    mostrarPregunta();
+                }
+            );
+
+            navegadorPreguntas.appendChild(
+                boton
+            );
+        }
+    );
+}
+
+// ============================================================
 // PROGRESO
-// ------------------------------------------------------------
+// ============================================================
 
 function actualizarProgreso() {
 
-    const respondidas = respuestasUsuario.filter(
-        respuesta => respuesta !== null
-    ).length;
+    const respondidas =
+        respuestasUsuario.filter(
+            respuesta =>
+                respuesta !== null
+        ).length;
 
-    const porcentaje = (respondidas / preguntas.length) * 100;
+    const porcentaje =
+        (respondidas / preguntas.length) * 100;
 
-    if (progreso) {
-        progreso.style.width = `${porcentaje}%`;
+    if (barraProgreso) {
+
+        barraProgreso.style.width =
+            `${porcentaje}%`;
     }
 }
 
-// ------------------------------------------------------------
+// ============================================================
 // CRONÓMETRO
-// ------------------------------------------------------------
+// ============================================================
 
 function iniciarCronometro() {
 
-    clearInterval(temporizador);
+    clearInterval(
+        temporizador
+    );
 
-    temporizador = setInterval(() => {
+    temporizador =
+        setInterval(() => {
 
-        if (examenFinalizado) {
-            clearInterval(temporizador);
-            return;
-        }
+            if (examenFinalizado) {
 
-        segundosRestantes--;
+                clearInterval(
+                    temporizador
+                );
 
-        actualizarCronometro();
+                return;
+            }
 
-        if (segundosRestantes <= 0) {
-
-            segundosRestantes = 0;
+            segundosRestantes--;
 
             actualizarCronometro();
 
-            finalizarExamen(true);
-        }
+            if (
+                segundosRestantes <= 0
+            ) {
 
-    }, 1000);
+                segundosRestantes =
+                    0;
+
+                actualizarCronometro();
+
+                finalizarExamen(true);
+            }
+
+        }, 1000);
 }
 
 function actualizarCronometro() {
 
-    const minutos = Math.floor(segundosRestantes / 60);
-    const segundos = segundosRestantes % 60;
+    const minutos =
+        Math.floor(
+            segundosRestantes / 60
+        );
 
-    const minutosTexto = String(minutos).padStart(2, "0");
-    const segundosTexto = String(segundos).padStart(2, "0");
+    const segundos =
+        segundosRestantes % 60;
 
-    if (contador) {
-        contador.textContent =
+    const minutosTexto =
+        String(minutos).padStart(
+            2,
+            "0"
+        );
+
+    const segundosTexto =
+        String(segundos).padStart(
+            2,
+            "0"
+        );
+
+    if (cronometro) {
+
+        cronometro.textContent =
             `${minutosTexto}:${segundosTexto}`;
+
+        cronometro.classList.remove(
+            "urgente"
+        );
+
+        if (
+            segundosRestantes <= 60
+        ) {
+
+            cronometro.classList.add(
+                "urgente"
+            );
+        }
     }
 
-    if (contador) {
+    if (barraTiempo) {
 
-        contador.classList.remove("urgente");
+        const porcentaje =
+            (
+                segundosRestantes /
+                DURACION_SEGUNDOS
+            ) * 100;
 
-        if (segundosRestantes <= 60) {
-            contador.classList.add("urgente");
-        }
+        barraTiempo.style.width =
+            `${porcentaje}%`;
     }
 }
 
-// ------------------------------------------------------------
-// FINALIZAR EXAMEN
-// ------------------------------------------------------------
+// ============================================================
+// FINALIZAR
+// ============================================================
 
-async function finalizarExamen(automatico = false) {
+async function finalizarExamen(
+    automatico = false
+) {
 
-    if (examenFinalizado || guardandoResultado) {
+    if (
+        examenFinalizado ||
+        guardandoResultado
+    ) {
+
         return;
     }
 
-    examenFinalizado = true;
+    examenFinalizado =
+        true;
 
-    clearInterval(temporizador);
+    clearInterval(
+        temporizador
+    );
 
     const tiempoEmpleado =
-        DURACION_SEGUNDOS - segundosRestantes;
+        DURACION_SEGUNDOS -
+        segundosRestantes;
 
     let aciertos = 0;
 
-    preguntas.forEach((pregunta, indice) => {
+    preguntas.forEach(
+        (pregunta, indice) => {
 
-        if (
-            respuestasUsuario[indice] ===
-            pregunta.correcta
-        ) {
-            aciertos++;
+            if (
+                respuestasUsuario[indice] ===
+                pregunta.correcta
+            ) {
+
+                aciertos++;
+            }
         }
-    });
+    );
 
     const porcentaje =
-        Math.round((aciertos / preguntas.length) * 100);
+        Math.round(
+            (
+                aciertos /
+                preguntas.length
+            ) * 100
+        );
 
     const apto =
         aciertos >= MINIMO_APTO;
@@ -437,18 +668,17 @@ async function finalizarExamen(automatico = false) {
         automatico
     );
 
-    // --------------------------------------------------------
-    // GUARDAR RESULTADO EN SUPABASE
-    // --------------------------------------------------------
-
-    guardandoResultado = true;
+    guardandoResultado =
+        true;
 
     mostrarEstadoGuardado(
         "💾 Guardando resultado..."
     );
 
     if (btnRepetir) {
-        btnRepetir.disabled = true;
+
+        btnRepetir.disabled =
+            true;
     }
 
     try {
@@ -472,22 +702,25 @@ async function finalizarExamen(automatico = false) {
         );
 
         mostrarEstadoGuardado(
-            "⚠️ El resultado se ha calculado, pero no se ha podido guardar en tu historial. Inténtalo de nuevo o contacta con el centro."
+            "⚠️ El resultado se ha calculado, pero no se ha podido guardar en tu historial."
         );
 
     } finally {
 
-        guardandoResultado = false;
+        guardandoResultado =
+            false;
 
         if (btnRepetir) {
-            btnRepetir.disabled = false;
+
+            btnRepetir.disabled =
+                false;
         }
     }
 }
 
-// ------------------------------------------------------------
-// GUARDAR RESULTADO EN SUPABASE
-// ------------------------------------------------------------
+// ============================================================
+// GUARDAR EN SUPABASE
+// ============================================================
 
 async function guardarResultado(
     aciertos,
@@ -497,13 +730,14 @@ async function guardarResultado(
 ) {
 
     if (!usuarioActual) {
+
         throw new Error(
             "No hay una sesión de alumno activa."
         );
     }
 
     // --------------------------------------------------------
-    // 1. GUARDAR EL INTENTO
+    // GUARDAR INTENTO
     // --------------------------------------------------------
 
     const {
@@ -512,46 +746,73 @@ async function guardarResultado(
     } = await cliente
         .from("attempts")
         .insert({
-            user_id: usuarioActual.id,
-            test_name: "Test Permiso B · Normativa general",
-            total_questions: preguntas.length,
-            correct_answers: aciertos,
-            percentage: porcentaje,
-            passed: apto,
-            elapsed_seconds: tiempoEmpleado
+            user_id:
+                usuarioActual.id,
+
+            test_name:
+                "Test Permiso B · Normativa general",
+
+            total_questions:
+                preguntas.length,
+
+            correct_answers:
+                aciertos,
+
+            percentage:
+                porcentaje,
+
+            passed:
+                apto,
+
+            elapsed_seconds:
+                tiempoEmpleado
         })
         .select("id")
         .single();
 
     if (intentoError) {
+
         throw intentoError;
     }
 
-    if (!intento || !intento.id) {
+    if (
+        !intento ||
+        !intento.id
+    ) {
+
         throw new Error(
             "Supabase no devolvió el identificador del intento."
         );
     }
 
     // --------------------------------------------------------
-    // 2. GUARDAR LAS RESPUESTAS
+    // GUARDAR RESPUESTAS
     // --------------------------------------------------------
 
-    const respuestas = preguntas.map(
-        (pregunta, indice) => {
+    const respuestas =
+        preguntas.map(
+            (pregunta, indice) => {
 
-            const seleccion =
-                respuestasUsuario[indice];
+                const seleccion =
+                    respuestasUsuario[indice];
 
-            return {
-                attempt_id: intento.id,
-                question_id: String(indice + 1),
-                selected_option: seleccion,
-                is_correct:
-                    seleccion === pregunta.correcta
-            };
-        }
-    );
+                return {
+
+                    attempt_id:
+                        intento.id,
+
+                    question_id:
+                        String(indice + 1),
+
+                    selected_option:
+                        seleccion,
+
+                    is_correct:
+                        seleccion ===
+                        pregunta.correcta
+                };
+            }
+        );
 
     const {
         error: respuestasError
@@ -560,13 +821,14 @@ async function guardarResultado(
         .insert(respuestas);
 
     if (respuestasError) {
+
         throw respuestasError;
     }
 }
 
-// ------------------------------------------------------------
-// MOSTRAR RESULTADO
-// ------------------------------------------------------------
+// ============================================================
+// RESULTADO
+// ============================================================
 
 function mostrarResultado(
     aciertos,
@@ -576,213 +838,273 @@ function mostrarResultado(
     automatico
 ) {
 
-    if (pantallaExamen) {
-        pantallaExamen.classList.add("oculto");
-    }
+    pantallaExamen.classList.add(
+        "oculto"
+    );
 
-    if (pantallaResultado) {
-        pantallaResultado.classList.remove("oculto");
-    }
+    pantallaResultado.classList.remove(
+        "oculto"
+    );
 
     if (resultadoTitulo) {
 
         resultadoTitulo.textContent =
-            apto ? "¡APTO!" : "NO APTO";
+            apto
+                ? "APTO"
+                : "NO APTO";
+    }
 
-        resultadoTitulo.classList.remove(
+    if (resultadoIcono) {
+
+        resultadoIcono.textContent =
+            apto
+                ? "✓"
+                : "✗";
+    }
+
+    if (resultadoCard) {
+
+        resultadoCard.classList.remove(
             "apto",
             "no-apto"
         );
 
-        resultadoTitulo.classList.add(
-            apto ? "apto" : "no-apto"
+        resultadoCard.classList.add(
+            apto
+                ? "apto"
+                : "no-apto"
         );
     }
 
-    if (resultadoPuntuacion) {
+    if (resultadoAciertos) {
 
-        resultadoPuntuacion.textContent =
+        resultadoAciertos.textContent =
             `${aciertos} / ${preguntas.length}`;
     }
 
     if (resultadoPorcentaje) {
 
         resultadoPorcentaje.textContent =
-            `${porcentaje}%`;
+            `${porcentaje} %`;
     }
 
     if (resultadoTiempo) {
 
         resultadoTiempo.textContent =
-            formatearTiempo(tiempoEmpleado);
+            formatearTiempo(
+                tiempoEmpleado
+            );
     }
-
-    mostrarRevision();
 
     if (automatico) {
 
-        const aviso = document.createElement("p");
+        const aviso =
+            document.createElement("p");
 
-        aviso.className = "aviso-tiempo";
+        aviso.className =
+            "aviso-tiempo";
 
         aviso.textContent =
             "⏱️ El tiempo ha terminado. El examen se ha corregido automáticamente.";
 
         if (resultadoCard) {
-            resultadoCard.appendChild(aviso);
+
+            resultadoCard.appendChild(
+                aviso
+            );
         }
     }
+
+    mostrarRevision();
 }
 
-// ------------------------------------------------------------
+// ============================================================
 // ESTADO DEL GUARDADO
-// ------------------------------------------------------------
+// ============================================================
 
-function mostrarEstadoGuardado(mensaje) {
+function mostrarEstadoGuardado(
+    mensaje
+) {
 
     let elemento =
-        document.getElementById("estado-guardado");
+        document.getElementById(
+            "estado-guardado"
+        );
 
     if (!elemento) {
 
-        elemento = document.createElement("p");
+        elemento =
+            document.createElement("p");
 
-        elemento.id = "estado-guardado";
+        elemento.id =
+            "estado-guardado";
 
-        elemento.style.marginTop = "15px";
-        elemento.style.fontWeight = "600";
+        elemento.style.marginTop =
+            "15px";
+
+        elemento.style.fontWeight =
+            "600";
 
         if (resultadoCard) {
-            resultadoCard.appendChild(elemento);
+
+            resultadoCard.appendChild(
+                elemento
+            );
         }
     }
 
-    elemento.textContent = mensaje;
+    elemento.textContent =
+        mensaje;
 }
 
-// ------------------------------------------------------------
-// REVISIÓN DE RESPUESTAS
-// ------------------------------------------------------------
+// ============================================================
+// REVISIÓN
+// ============================================================
 
 function mostrarRevision() {
 
-    if (!resultadoRevision) {
+    if (!revision) {
         return;
     }
 
-    resultadoRevision.innerHTML = "";
+    revision.innerHTML =
+        "";
 
-    preguntas.forEach((pregunta, indice) => {
+    preguntas.forEach(
+        (pregunta, indice) => {
 
-        const seleccion =
-            respuestasUsuario[indice];
+            const seleccion =
+                respuestasUsuario[indice];
 
-        const correcta =
-            seleccion === pregunta.correcta;
+            const correcta =
+                seleccion ===
+                pregunta.correcta;
 
-        const bloque =
-            document.createElement("div");
+            const bloque =
+                document.createElement("div");
 
-        bloque.className =
-            `revision-item ${correcta ? "correcta" : "incorrecta"}`;
+            bloque.className =
+                "revision-item";
 
-        let respuestaAlumno = "Sin responder";
+            const respuestaAlumno =
+                seleccion === null
+                    ? "Sin responder"
+                    : `${String.fromCharCode(65 + seleccion)}. ${pregunta.opciones[seleccion]}`;
 
-        if (seleccion !== null) {
+            const respuestaCorrecta =
+                `${String.fromCharCode(65 + pregunta.correcta)}. ${pregunta.opciones[pregunta.correcta]}`;
 
-            respuestaAlumno =
-                `${String.fromCharCode(65 + seleccion)}. ${pregunta.opciones[seleccion]}`;
+            bloque.innerHTML = `
+                <div class="revision-pregunta">
+                    ${indice + 1}. ${pregunta.pregunta}
+                </div>
+
+                <div class="revision-respuesta ${
+                    correcta
+                        ? "correcta"
+                        : "incorrecta"
+                }">
+                    <strong>Tu respuesta:</strong>
+                    ${respuestaAlumno}
+                </div>
+
+                <div class="revision-respuesta correcta">
+                    <strong>Respuesta correcta:</strong>
+                    ${respuestaCorrecta}
+                </div>
+
+                <div class="revision-explicacion">
+                    ${pregunta.explicacion}
+                </div>
+            `;
+
+            revision.appendChild(
+                bloque
+            );
         }
-
-        const respuestaCorrecta =
-            `${String.fromCharCode(65 + pregunta.correcta)}. ${pregunta.opciones[pregunta.correcta]}`;
-
-        bloque.innerHTML = `
-            <div class="revision-cabecera">
-                <strong>Pregunta ${indice + 1}</strong>
-                <span>${correcta ? "✓ Correcta" : "✗ Incorrecta"}</span>
-            </div>
-
-            <p class="revision-pregunta">
-                ${pregunta.pregunta}
-            </p>
-
-            <p>
-                <strong>Tu respuesta:</strong>
-                ${respuestaAlumno}
-            </p>
-
-            <p>
-                <strong>Respuesta correcta:</strong>
-                ${respuestaCorrecta}
-            </p>
-
-            <p>
-                <strong>Explicación:</strong>
-                ${pregunta.explicacion}
-            </p>
-        `;
-
-        resultadoRevision.appendChild(bloque);
-    });
+    );
 }
 
-// ------------------------------------------------------------
-// FORMATEAR TIEMPO
-// ------------------------------------------------------------
+// ============================================================
+// FORMATO TIEMPO
+// ============================================================
 
-function formatearTiempo(segundosTotales) {
+function formatearTiempo(
+    segundosTotales
+) {
 
     const minutos =
-        Math.floor(segundosTotales / 60);
+        Math.floor(
+            segundosTotales / 60
+        );
 
     const segundos =
         segundosTotales % 60;
 
-    return `${String(minutos).padStart(2, "0")}:${String(segundos).padStart(2, "0")}`;
+    return (
+        String(minutos).padStart(2, "0")
+        + ":" +
+        String(segundos).padStart(2, "0")
+    );
 }
 
-// ------------------------------------------------------------
-// REPETIR EXAMEN
-// ------------------------------------------------------------
+// ============================================================
+// REPETIR
+// ============================================================
 
 function reiniciarExamen() {
 
-    clearInterval(temporizador);
+    clearInterval(
+        temporizador
+    );
 
-    preguntaActual = 0;
+    preguntaActual =
+        0;
 
     respuestasUsuario =
-        Array(preguntas.length).fill(null);
+        Array(
+            preguntas.length
+        ).fill(null);
 
     segundosRestantes =
         DURACION_SEGUNDOS;
 
-    examenFinalizado = false;
+    examenFinalizado =
+        false;
 
-    guardandoResultado = false;
+    guardandoResultado =
+        false;
 
-    const estadoGuardado =
-        document.getElementById("estado-guardado");
+    const estado =
+        document.getElementById(
+            "estado-guardado"
+        );
 
-    if (estadoGuardado) {
-        estadoGuardado.remove();
+    if (estado) {
+        estado.remove();
     }
 
     document
-        .querySelectorAll(".aviso-tiempo")
-        .forEach(elemento => elemento.remove());
+        .querySelectorAll(
+            ".aviso-tiempo"
+        )
+        .forEach(
+            elemento =>
+                elemento.remove()
+        );
 
-    if (pantallaResultado) {
-        pantallaResultado.classList.add("oculto");
-    }
+    pantallaResultado.classList.add(
+        "oculto"
+    );
 
-    if (pantallaExamen) {
-        pantallaExamen.classList.remove("oculto");
-    }
+    pantallaExamen.classList.remove(
+        "oculto"
+    );
 
     if (btnRepetir) {
-        btnRepetir.disabled = false;
+
+        btnRepetir.disabled =
+            false;
     }
 
     actualizarCronometro();
@@ -790,44 +1112,32 @@ function reiniciarExamen() {
     iniciarCronometro();
 }
 
-// ------------------------------------------------------------
+// ============================================================
 // EVENTOS
-// ------------------------------------------------------------
+// ============================================================
 
-if (btnAnterior) {
+btnAnterior.addEventListener(
+    "click",
+    anteriorPregunta
+);
 
-    btnAnterior.addEventListener(
-        "click",
-        anteriorPregunta
-    );
-}
+btnSiguiente.addEventListener(
+    "click",
+    siguientePregunta
+);
 
-if (btnSiguiente) {
+btnFinalizar.addEventListener(
+    "click",
+    () => finalizarExamen(false)
+);
 
-    btnSiguiente.addEventListener(
-        "click",
-        siguientePregunta
-    );
-}
+btnRepetir.addEventListener(
+    "click",
+    reiniciarExamen
+);
 
-if (btnFinalizar) {
-
-    btnFinalizar.addEventListener(
-        "click",
-        () => finalizarExamen(false)
-    );
-}
-
-if (btnRepetir) {
-
-    btnRepetir.addEventListener(
-        "click",
-        reiniciarExamen
-    );
-}
-
-// ------------------------------------------------------------
+// ============================================================
 // ARRANCAR
-// ------------------------------------------------------------
+// ============================================================
 
 iniciarExamenSeguro();
