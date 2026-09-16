@@ -11,14 +11,23 @@ const botones = document.querySelectorAll("[data-vista]");
    ========================================================= */
 
 const vistas = {
-    "definiciones_via": "/html/01_am_definiciones.html",
-    "normas": "/html/normas.html",
-    "incorporacion": "/html/incorporacion.html",
-    "desplazamiento": "/html/desplazamiento.html",
+/*===================MÓDULO 1================================*/    
+    "DerechoPrivado": "html_tte/11DechoPrivado.html",
+    "ContratoMercantil": "html_tte/12ContraMercantil.html",
+    "condic_general": "html_tte/13Condic_Generales.html",
+    "junta": "html_tte/14JuntaArbitral.html",
+    "cmr": "html_tte/15cmr.html",
+/*===================MÓDULO 2================================*/    
     "cambidir": "/html/cambidir.html",
     "cambisenti": "/html/cambisenti.html",
     "adelantar": "/html/adelantar.html",
-    "reversa": "/html/marchatras.html"
+    "reversa": "/html/marchatras.html",
+/*====================MÓDULO 3===============================*/
+    "delegado": "html_tte/31delegados.html",
+    "obligaciones":"html_tte/32obligaciones.html",
+    "contratos":"html_tte/33contratos.html",
+    "tacografo":"html_tte/34tacógrafo.html",
+
 };
 
 
