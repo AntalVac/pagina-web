@@ -44,8 +44,8 @@ body {
 ================================================== */
 
 .sidebar {
-    width: 250px;
-    min-width: 250px;
+    width: 300px;
+    min-width: 300px;
 
     display: flex;
     flex-direction: column;
@@ -795,7 +795,7 @@ body {
 
 .menu-grupo {
     width: 100%;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
 }
 
 
