@@ -11,23 +11,75 @@ const botones = document.querySelectorAll("[data-vista]");
    ========================================================= */
 
 const vistas = {
-/*===================MÓDULO 1================================*/    
+/*================1.- ELEMENTOS DE DERECHO PRIVADO===========*/    
     "DerechoPrivado": "html_tte/11DechoPrivado.html",
     "ContratoMercantil": "html_tte/12ContraMercantil.html",
     "condic_general": "html_tte/13Condic_Generales.html",
     "junta": "html_tte/14JuntaArbitral.html",
     "cmr": "html_tte/15cmr.html",
-/*===================MÓDULO 2================================*/    
-    "cambidir": "/html/cambidir.html",
-    "cambisenti": "/html/cambisenti.html",
-    "adelantar": "/html/adelantar.html",
-    "reversa": "/html/marchatras.html",
-/*====================MÓDULO 3===============================*/
+/*====2. EL TRANSPORTISTA COMO EMPRESARIO MERCANTIL.==========*/    
+    "empremercantil": "html_tte/21empremercantil.html",
+    "obligaformal": "html_tte/22obligaformales.html",
+    "empreindivi": "html_tte/23empreindivi.html",
+    "seciemerc": "html_tte/24seciemerc.html",
+    "socianonima": "html_tte/25socianonima.html",
+    "socierespcivil":"html_tte/26socierespcivil.html",
+    "sociecoop": "html_tte/27sociecoop.html",
+    "suspagos": "html_tte/28suspagos.html",
+/*===========3.- DERECHO SOCIAL===============================*/
     "delegado": "html_tte/31delegados.html",
     "obligaciones":"html_tte/32obligaciones.html",
     "contratos":"html_tte/33contratos.html",
     "tacografo":"html_tte/34tacógrafo.html",
 
+
+/*===========4.- DERECHO FISCAL===============================*/
+    "eliva": "html_tte/41eliva.html",
+    "elirpf":"html_tte/42elirpf.html",
+    "impuestosocie":"html_tte/43impuestosocie.html",
+    "otrostributos":"html_tte/44otrostributos.html",
+/*===========5.- GESTION COMERCIAL============================*/
+    "letracambio": "html_tte/51letracambio.html",
+    "creditobanc":"html_tte/52creditobanc.html",
+    "contrafianza":"html_tte/53contrafianza.html",
+    "leasing":"html_tte/54leasing.html",
+    "elbalance": "html_tte/55elbalance.html",
+    "ctaperganacias":"html_tte/56ctaperganacias.html",
+    "ratiofinanc":"html_tte/57ratiofinanc.html",
+    "presupuesto":"html_tte/58presupuesto.html",
+    "costes": "html_tte/59costes.html",
+    "departamentacion":"html_tte/510departamentacion.html",
+    "planificacion":"html_tte/511planificacion.html",
+    "marketing":"html_tte/512marketing.html",
+    "contratoseguro": "html_tte/513contratoseguro.html",
+    "segurrespcivil": "html_tte/514segurrespcivil.html",
+    "segurtte": "html_tte/515segurtte.html",
+    "informatizacion": "html_tte/516informatizacion.html",
+    "facturacion":"html_tte/517facturacion.html",
+    "agenciatte":"html_tte/518agenciatte.html",
+    /*===========6.- ACCESO AL MERCADO=======================*/
+    "profesiontta": "html_tte/61profesiontta.html",
+    "ttainterior":"html_tte/62ttainterior.html",
+    "ttainternacional":"html_tte/63ttainternacional.html",
+    "documentos":"html_tte/64documentos.html",
+    "logistica": "html_tte/65logistica.html",
+    "fronteras":"html_tte/66fronteras.html",
+    "controltte":"html_tte/67controltte.html",
+    /*===========7.- NORMAS DE EXPLOTACIÓN=======================*/
+    "pesodimension": "html_tte/71pesosdimension.html",
+    "vehiculosligpesados":"html_tte/72vehiculosligpesados.html",
+    "tramiadministrativo":"html_tte/73tramiadministrativo.html",
+    "limitacionesgases":"html_tte/74limitacionesgases.html",
+    "planesperiodicos": "html_tte/75planesperiodicos.html",
+    "proteccmercancia":"html_tte/76proteccmercancia.html",
+    "transpintermodal":"html_tte/77transpintermodal.html",
+    "atp" : "html_tte/79elatp.html",
+    "animalesvivos" : "html_tte/710animalesvivos.html",
+    "adr" : "html_tte/78eladr.html",
+    /*===========8.- SEGURIDAD EN CARRETERA===================*/
+    "permisocon": "html_tte/81permisocon.html",
+    "circulavehículos":"html_tte/82circulavehículos.html",
+    "segurconduccion":"html_tte/83segurconduccion.html",
 };
 
 
