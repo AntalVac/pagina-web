@@ -154,6 +154,8 @@ hr {
    --------------------------------------------------------- */
 
 .apartado {
+    counter-reset: lista;
+    
     background: #ffffff;
     padding: 28px 30px;
     margin-bottom: 25px;
@@ -183,17 +185,16 @@ hr {
    --------------------------------------------------------- */
 
 .apartado ol {
-    counter-reset: lista;
     list-style: none;
     padding: 0;
     margin: 20px 0;
 }
 
-.apartado ol li {
+.apartado ol > li {
     counter-increment: lista;
     position: relative;
 
-    padding: 15px 18px 15px 55px;
+    padding: 14px 18px 15px 55px;
     margin-bottom: 10px;
 
     background: #f8fafc;
@@ -207,13 +208,12 @@ hr {
 
 /* Número de la lista */
 
-.apartado ol li::before {
+.apartado ol > li::before {
     content: counter(lista);
 
     position: absolute;
     left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 10px;              /* ← alineado con la primera línea */
 
     width: 28px;
     height: 28px;
@@ -523,3 +523,95 @@ hr {
     height: auto;
     flex-shrink: 0;
 }
+/*==============================================================
+
+     TIPO DE FUENTE DISTINTA PARA RESALTAR COMENTARIOS
+
+================================================================*/
+.fuente-distinta {
+  font-family: 'Qwerty', sans-serif; /* Aquí defines la fuente distinta */
+  font-style: italic;            /* Opcional: puedes agregar cursiva */
+  color: #e74c3c;                /* Opcional: cambiar el color */
+}
+/*==============================================================
+
+                         LISTA EMOJI
+
+================================================================*/
+.lista-emoji {
+    list-style: none !important;
+    padding-left: 0 !important;
+    margin-left: 25px !important;
+    margin-top: 15px;
+}
+
+
+.lista-emoji li {
+    display: block !important;
+    position: relative !important;
+    margin-bottom: 12px;
+    padding-left: 20px !important;
+}
+
+.lista-emoji li::before {
+    content: "" !important;
+
+    position: absolute !important;
+    left: 0 !important;
+    top: 4px !important;
+
+    width: 12px !important;
+    height: 12px !important;
+
+    display: block !important;
+
+    background-image: url('/ico/bola.png') !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+
+    border-radius: 0 !important;
+}
+
+.lista-emoji .ejemplo {
+    font-family: Arial, sans-serif;
+    color: #ff0000;
+    text-decoration: underline;
+    font-weight: bold;
+    margin: 15px 0 5px 0;
+}
+.lista2-emoji {
+    list-style: none !important; /* Fuerza a eliminar cualquier viñeta del sistema */
+    padding-left: 0 !important;
+    margin-left: 25px !important; /* ⬅️ Esto es lo que empuja TODO a la derecha */
+    margin-top: 15px; 
+}
+
+.lista2-emoji li {
+    display: flex !important;
+    align-items: flex-start !important; /* Mantiene la bola arriba en textos largos */
+    gap: 12px !important;               /* Separa el texto de la bola */
+    margin-bottom: 12px;     
+}
+
+.lista2-emoji li::before {
+    content: "" !important;
+    display: inline-block !important;
+    width: 12px !important;
+    height: 12px !important;
+    background-image: url('/ico/flecha.svg') !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    flex-shrink: 0 !important;
+    margin-top: 4px; /* Ajuste para que la bola quede centrada con la primera línea */
+}
+/*==============================================================
+
+                         PALABRA EN NEGRITA
+
+================================================================*/
+.palabra-negrita {
+  font-weight: bold;
+}
+
