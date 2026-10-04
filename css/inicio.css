@@ -335,3 +335,278 @@ body.inicio {
     .inicio-tarjeta { min-height: 260px; }
     .franja-contenido { flex-direction: column; text-align: center; }
 }
+/*==========================================================================================
+                PORTADA IMAGEN DE FORMACIÓN
+==========================================================================================*/
+
+/*.imagen-formacion {
+    width: 100%;
+    max-width: 1536px;
+    height: 1024px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}*/
+/*==========================================================================================
+                PORTADA IMAGEN DE FORMACIÓN - CORREGIDA
+==========================================================================================*/
+
+/* 1. Contenedor principal: controla el alto de la portada en la pantalla */
+.banner-contenedor {
+    position: relative;
+    width: 100%;
+    max-width: 1536px;
+    aspect-ratio: 3 / 2;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+/* 🛠️ CORRECCIÓN: La imagen ahora se adapta al 100% de la caja sin salirse ni deformarse */
+.foto-fondo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* 1. Activa el movimiento suave en toda la página web */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 3. La caja de los bloques: se clava obligatoriamente abajo de la imagen */
+.bloques-inferiores {
+  position: absolute;
+  bottom: 0; 
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
+  gap: 40px; 
+  padding: 50px 40px 35px 40px; 
+  box-sizing: border-box;
+  
+  /* 🔵 Agregamos el degradado azul de la Opción B para que tus textos se lean perfectamente */
+  background: linear-gradient(to top, rgba(11, 79, 140, 0.95) 0%, rgba(11, 79, 140, 0.75) 80%, rgba(11, 79, 140, 0) 100%);
+}
+
+/* 4. Estilo de los bloques individuales */
+.bloque {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 10px;
+  box-sizing: border-box;
+  position: relative;
+  font-family: sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Al pasar el ratón, el bloque entero sube un poco de forma interactiva */
+.bloque:hover {
+  transform: translateY(-8px); 
+}
+
+/* Colores de textos adaptados para resaltar sobre el fondo azul corporativo */
+.bloque h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #ffffff; /* Letras blancas para el título */
+  letter-spacing: 0.5px;
+}
+
+.bloque p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #e2e8f0; /* Gris claro muy legible */
+}
+
+/* Compensar la altura si tu menú superior tapa contenido */
+#seccion-capacitacion,
+#seccion-consejero,
+#seccion-adr {
+  scroll-margin-top: 80px; 
+}
+/*==========================================================================================
+                PORTADA IMAGEN DE CAPACITACIÓN - CORREGIDA
+==========================================================================================*/
+.capacitacion {
+    max-width: 1400px;
+    margin: 70px auto;
+    padding: 0 30px;
+}
+
+
+/* CABECERA */
+
+.capacitacion-titulo {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.capacitacion-titulo span {
+    display: inline-block;
+    color: #c62828;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.capacitacion-titulo h2 {
+    margin: 0;
+    color: #123b63;
+    font-size: 2.2rem;
+}
+
+.capacitacion-titulo p {
+    max-width: 700px;
+    margin: 15px auto 0;
+    color: #5f6b75;
+    font-size: 1.05rem;
+}
+
+
+/* CONTENEDOR DE LAS DOS TARJETAS */
+
+.capacitacion-enlaces {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 35px;
+}
+
+
+/* TARJETA */
+
+.capacitacion-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    min-height: 250px;
+    padding: 35px;
+
+    text-decoration: none;
+
+    border-radius: 22px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 15px 40px rgba(18, 59, 99, 0.12);
+
+    border: 1px solid #e4e9ee;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* LÍNEA SUPERIOR */
+
+.capacitacion-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 6px;
+
+    background: #123b63;
+}
+
+
+/* EFECTO HOVER */
+
+.capacitacion-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 22px 50px rgba(18, 59, 99, 0.20);
+}
+
+
+/* ICONO */
+
+.capacitacion-icono {
+    flex: 0 0 120px;
+
+    width: 120px;
+    height: 120px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #edf5fb;
+}
+
+.capacitacion-icono img {
+    width: 75px;
+    height: 75px;
+    object-fit: contain;
+}
+
+
+/* TEXTO */
+
+.capacitacion-contenido {
+    flex: 1;
+}
+
+.capacitacion-etiqueta {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #c62828;
+}
+
+.capacitacion-contenido h3 {
+    margin: 7px 0 10px;
+
+    color: #123b63;
+
+    font-size: 1.45rem;
+}
+
+.capacitacion-contenido p {
+    margin: 0 0 18px;
+
+    color: #596773;
+
+    line-height: 1.5;
+}
+
+
+/* ENLACE */
+
+.capacitacion-boton {
+    display: inline-block;
+
+    color: #123b63;
+
+    font-weight: 700;
+
+    transition: color 0.3s ease;
+}
+
+.capacitacion-card:hover .capacitacion-boton {
+    color: #c62828;
+}
