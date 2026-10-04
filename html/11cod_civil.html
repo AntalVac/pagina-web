@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!----
+    <link rel="stylesheet" href="/css/estilo.css" type="text/css">
+    ----->
+    <style>
+        /*==============================================================
+
+                         ENLACES PARA PREGUNTAS
+
+================================================================*/
+.enlace1{
+    background-color: #3498db; /* Azul brillante */
+    color: white;
+    border: none;
+    font-size: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+/*==============================================================
+
+                         FORMATO DE LAS PREGUNTAS
+
+================================================================*/
+
+.pregunta {
+    background: #ffffff;
+    border: 1px solid #d9d9d9;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 25px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: small;
+}
+
+.pregunta .codigo {
+    margin: 0 0 15px;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.pregunta .texto-pregunta {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 18px;
+}
+
+.pregunta > p:not(.codigo):not(.texto-pregunta):not(.solucion):not(.norma) {
+    margin: 8px 0;
+    line-height: 1.5;
+}
+
+.pregunta .solucion {
+    margin-top: 18px;
+    padding-top: 12px;
+    border-top: 1px solid #ddd;
+}
+
+.pregunta .norma {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+.pregunta:target {
+    background: #fff8e1;
+    border-left: 6px solid #f0a500;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    padding: 18px 22px;
+    scroll-margin-top: 30px;
+}
+
+.pregunta:target::before {
+    content: "📌 PREGUNTA SELECCIONADA";
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 700;
+    color: #b36b00;
+}
+
+
+
+/*==============================================================
+
+                         VISTAS DE LAS RESPUESTAS
+
+================================================================*/
+.respuestas {
+    margin: 15px 0;
+}
+
+.respuestas p {
+    margin: 8px 0;
+    padding: 8px 12px;
+    background: #f7f7f7;
+    border-radius: 5px;
+    line-height: 1.5;
+}
+    </style>
+</head>
+<body>
+<!-----------------------------------------------------------------1A01002---->
+<article class="pregunta" id="1A01002">
+    <p class="codigo">
+        <strong>COD: 1A01002</strong>
+    </p>
+    <p>
+        <strong>PREGUNTA:</strong>
+        La definición siguiente: "Por el contrato de arrendamiento una de las partes se obliga a ceder a otra el goce o uso de una cosa"…</p>
+        <div class="respuestas">
+            <p><strong>A:</strong> es verdadera y completa.</p>
+            <p><strong>B:</strong> es verdadera, pero incompleta por faltarle la mención del tiempo y del precio.</p>
+            <p><strong>C:</strong> es falsa porque no se cede el uso sino la propiedad.</p>
+            <p><strong>D:</strong> es falsa, pues no hay obligación de cesión ya que esta siempre es facultativa.
+            </p>
+        </div>
+        <p class="solucion">
+            <strong>SOLUCIÓN:</strong> B
+        </p>
+        <p class="norma">
+            <strong>NORMA</strong> 
+            Código Civil, art. 1543
+        </p>
+        </article>
+<!-----------------------------------------------------------------1A01003---->
+<article class="pregunta" id="1A01003">
+        
+    <p class="codigo">
+        <strong>COD: 1A01003</strong> 
+    </p>
+    <p>
+       <strong>PREGUNTA:</strong>
+        ¿Qué es un arrendamiento?
+        <div class="respuestas">
+            <p><strong>A:</strong> Un pacto en virtud del cual el dueño de una cosa cede a otro el uso de ella por tiempo determinado y mediante precio cierto.</p>
+            <p><strong>B:</strong> Es un uso característico de la Comunidad Foral Navarra y de la Comunidad Autónoma de Cataluña.</p>
+            <p><strong>C:</strong> Una cesión temporal de la posesión de un bien material o inmaterial y siempre de duración inferior a 5 años.</p>
+            <p><strong>D:</strong> Una cesión de un objeto con obligación de venta al arrendador si este lo desea.</p>
+        </div>
+        <p class="solucion">
+            <strong>SOLUCION:</strong> A
+        </p>
+        <p class="norma">
+            <strong>NORMA:</strong>
+             Código Civil, art. 1543
+        </p>
+</article>
+<!-----------------------------------------------------------------1A01004---->
+<article class="pregunta" id="1A01004">
+        
+    <p class="codigo">
+        COD: 1A01004
+    </p>
+    <p>
+        <strong>PREGUNTA:</strong>
+         ¿Qué se puede arrendar?
+        <div class="respuestas">
+            <p><strong>A:</strong> Únicamente los inmuebles.</p>
+            <p><strong>B:</strong> Cosas, obras y servicios.</p>
+            <p><strong>C:</strong> Cosas y obras.</p>
+            <p><strong>D:</strong> Viviendas y fincas agrícolas solamente.</p>
+        </div>
+        <p class="solucion">
+            <strong>SOLUCIÓN:</strong> B
+        </p>
+        <p class="norma">
+            <strong>NORMA:</strong> Código Civil, art. 1542
+        </p>
+</article>
+<!-----------------------------------------------------------------1A01005---->
+
+<article class="pregunta" id="1A01005">
+    <p class="codigo">
+        COD: 1A01005
+    </p>
+    <p>
+        <strong>PREGUNTA:</strong>
+         ¿Permite la normativa un contrato de arrendamiento por tiempo indefinido?
+    </p>    
+    <div class="respuestas">    
+        <p><strong>A:</strong> Sí, si estuviésemos ante un arrendamiento perpetuo.</p>
+        <p><strong>B:</strong> Sí, pero solo es posible en cosas que permitan esa perpetuidad de uso por no destruirse.</p>
+        <p><strong>C:</strong> Sí en bienes inmuebles y no en los muebles.</p>
+        <p><strong>D:</strong> No, los arrendamientos deben tener un tiempo fijo y determinado.</p>
+        <p class="solucion">
+                <strong>SOLUCIÓN: </strong>D
+        </p>
+        <p class="norma">
+                <strong>NORMA: </strong>
+                Código Civil, art. 1543; Código Civil, art. 1583
+        </p>
+</article>
+<!-----------------------------------------------------------------1A01006---->
+<article class="pregunta" id="1A01006">
+        <p class="codigo">
+           COD: 1A01006
+        </p>
+        <P>
+            <strong>PREGUNTA: </strong>
+            En un contrato de arrendamiento, ¿cuáles son las obligaciones del arrendador?
+        </P>
+        <div class="respuestas">
+                <p><strong>A:</strong> Entregar la cosa al arrendatario y conservar la cosa en estado de servir para el uso al que se destina.</p>
+                <p><strong>B:</strong> Entregar la cosa al arrendatario y realizar en la misma obras de mejora.</p>
+                <p><strong>C:</strong> Entregar la cosa al arrendatario y conservarla en buen estado, haciendo uso de ella en los casos justificados que se establezcan en el contrato.</p>
+                <p><strong>D:</strong> Conservar y mejorar razonablemente la cosa arrendada.</p>
+        <p class="solucion">
+                <strong>SOLUCION:</strong> A
+        </p>
+        <p class="norma">
+                <strong>NORMA: </strong>
+                Código Civil, art. 1554
+        </p>
+</article>
+<!-----------------------------------------------------------------1A01007---->
+
+<article class="pregunta" id="1A01007">
+        <p class="codigo">
+           COD: 1A01007
+        </p>
+        <P>
+            <strong>PREGUNTA: </strong>
+                 ¿Cuáles son las obligaciones del arrendatario de cosas?
+        </P>
+        <div class="respuestas">
+                <p><strong>A:</strong> Pagar, usar con diligencia, responder del deterioro y devolver como las recibió.</p>
+                <p><strong>B:</strong> Asegurar el cobro de un precio determinado y cierto.</p>
+                <p><strong>C:</strong> Conservarlas y mejorarlas razonablemente.</p>
+                <p><strong>D:</strong>Responder de los deterioros debidos a la naturaleza propia de la cosa.</p>
+        <p class="solucion">
+                <strong>SOLUCION:</strong> A
+        </p>
+        <p class="norma">
+                <strong>NORMA: </strong>
+                Código Civil, art. 1555; Código Civil, art. 1561; Código Civil, art. 1564
+        </p>
+</article>
+<!-----------------------------------------------------------------1A01008---->
+<article class="pregunta" id="1A01008">
+        <p class="codigo">
+                COD: 1A01008
+        </p>
+        <p><strong>PREGUNTA: </strong>En un contrato de arrendamiento de bienes, ¿cuáles son las obligaciones principales del arrendador y del arrendatario?</p>
+        <div class="respuestas">
+        <p><strong>A: </strong>Entregar la cosa y pagar el precio convenido.</p>
+        <p><strong>B: </strong>Documentar el contrato por escrito y abonar el importe por adelantado.</p>
+        <p><strong>C: </strong>No es un contrato bilateral porque solo implica la obligación de facilitar el uso de la cosa arrendada al arrendador.</p>
+        <p><strong>D: </strong>Pagar los impuestos y tasas municipales.</p>
+        <p class="solucion"><strong>SOLUCION: </strong>A</p>
+        <p class="norma"><strong>NORMA: </strong>Código Civil, art. 1546; Código Civil, art. 1554; Código Civil, art. 1555</p>
+</article>
+<!-----------------------------------------------------------------1A01009---->
+<article class="pregunta" id="1A01009">
+        <p class="codigo">COD: 1A01009</p>
+        <p><strong>PREGUNTA: </strong>En el contrato de arrendamiento de cosas, ¿el arrendatario adquiere la propiedad de las cosas durante el período de duración del contrato?</p>
+        <div class="respuestas">
+        <p><strong>A: </strong>Sí.</p>
+        <p><strong>B: </strong>Solo en el arrendamiento de bienes inmuebles.</p>
+        <p><strong>C: </strong>Solo en el arrendamiento de bienes muebles.</p>
+        <p><strong>D: </strong>: No, solo adquiere el goce y el uso de la cosa.</p>
+        </div>
+        <p class="solucion"><strong>SOLUCION: </strong>D</p>
+        <p><strong>NORMA: </strong>Código Civil, art. 1546</p>
+        
+</article>
+<!-----------------------------------------------------------------1A01010---->
+<article class="pregunta" id="1A01010">
+        <p class="codigo">
+        COD: 1A01010
+        </p>
+        <p><strong>PREGUNTA: </strong>¿Qué personas intervienen en un contrato de arrendamiento?</p>
+        <div class="respuestas">
+                <p><strong>A: </strong>El arrendatario y el inquilino.
+                <p><strong>B: </strong>El arrendador y el arrendatario.</p>
+                <p><strong>C: </strong>El arrendador, el arrendatario y el subarrendador.</p>
+                <p><strong>D: </strong>El arrendador, el adquirente y el arrendatario.</p>
+        </div>
+        <p class="solucion">
+                <strong>SOLUCION: </strong>B
+        </p>
+        <p class="norma">
+                <strong>NORMA: </strong>
+                Código Civil, art. 1546
+        </p>
+        
+</article>
+<!-----------------------------------------------------------------1A01011---->
+<article class="pregunta" id="1A01011">
+        <p class="codigo">
+                COD: 1A01011
+        </p>
+        <p><strong>PREGUNTA: </strong>¿Quién es el arrendatario en el contrato de arrendamiento de cosas?</p>
+        <div class="respuestas">
+                <p><strong>A: </strong>El propietario del bien arrendado.</p>
+                <p><strong>B: </strong>Quien recibe el pago del precio del arrendamiento.</p>
+                <p><strong>C: </strong>El que está obligado a mantener el disfrute pacífico en las cosas arrendadas.</p>
+                <p><strong>D:</strong>Quien recibe la cosa para usar o gozar de ella.</p>
+        <p class="solucion">
+                <strong>SOLUCION: </strong>D
+        </p>
+        <p><strong>NORMA: </strong>Código Civil, art. 1546</p>
+</article>
+<!-----------------------------------------------------------------1A01012---->
+<article class="pregunta" id="1A01012">
+        COD: 1A01012
+        PREGUNTA: ¿Quién es el arrendador en el contrato de arrendamiento de cosas?
+        A: La persona que recibe el bien arrendado.
+        B: La persona que usa el bien arrendado.
+        C: La persona que se compromete al pago del arrendamiento.
+        D: La persona que cede la cosa a otro para su uso o disfrute.
+        SOLUCION: D
+        NORMA: Código Civil, art. 1546
+</article>
+ <article class="pregunta" id="1A01013">
+        COD: 1A01013
+        PREGUNTA: ¿Qué caracteriza al contrato de renting?
+        A: Existe opción de compra al finalizar el contrato.
+        B: Incorpora otros servicios como el mantenimiento de los bienes.
+        C: No puede tener una duración menor a la del contrato de leasing.
+        D: Se permite para bienes inmuebles.
+        SOLUCION: B
+        NORMA: Código de Comercio, art. 50; Código Civil, art. 1544
+ </article>
+<article class="pregunta" id="1A01014">
+        COD: 1A01014
+        PREGUNTA: ¿Qué finalidad tiene el renting?
+        A: Que el arrendador acceda a la propiedad de los bienes.
+        B: Que el arrendatario use los bienes por un tiempo.
+        C: Aumentar el capital de una sociedad.
+        D: Ceder créditos.
+        SOLUCION: B
+        NORMA: Código de Comercio, art. 50; Código Civil, art. 1543
+</article>
+<article class="pregunta" id="1A01015">
+        COD: 1A01015
+        PREGUNTA: ¿Qué caracteriza al contrato de renting?
+        A: Existe opción de compra al finalizar el contrato.
+        B: La propiedad del bien es adquirida por el arrendador.
+        C: No existe opción de compra al finalizar el contrato.
+        D: No se incluye el mantenimiento.
+        SOLUCION: C
+        NORMA: Código de Comercio, art. 50; Código Civil, art. 1561
+</article>
+ <article class="pregunta" id="1A01027">
+        COD: 1A01027
+        PREGUNTA: ¿Qué es un contrato de compraventa?
+        A: Un contrato en que una persona compra a otra, llamada vendedora, una cosa determinada y por precio cierto y vende otra cosa a una persona distinta a cambio también de un precio cierto.
+        B: Un contrato por el que el vendedor se obliga a entregar una cosa determinada y el comprador a pagar un precio cierto en dinero o signo que lo represente.
+        C: El intercambio de precio por servicio.
+        D: Ninguna de las respuestas anteriores es correcta.
+        SOLUCION: B
+        NORMA: Código Civil, art. 1445
+ </article>
+<article class="pregunta" id="1A01028">
+        COD: 1A01028
+        PREGUNTA: El contrato de compraventa y el de permuta, ¿son la misma cosa?
+        A: Sí.
+        B: Solo cuando afectan a bienes muebles.
+        C: Solo cuando afectan a bienes inmuebles.
+        D: No.
+        SOLUCION: D
+        NORMA: Código Civil, art. 1446; Código Civil, art. 1538
+</article>
+<article class="pregunta" id="1A01029">
+        COD: 1A01029
+        PREGUNTA: ¿A cargo de quién corre la obligación de conservar y custodiar la cosa hasta el momento de la entrega en el contrato de compraventa?
+        A: Del comprador.
+        B: Del vendedor.
+        C: Por partes iguales entre el comprador y el vendedor.
+        D: Del intermediario cuando lo haya.
+        SOLUCION: B
+        NORMA: Código Civil, art. 1461
+</article>
+<article class="pregunta" id="1A01030">
+        COD: 1A01030
+        PREGUNTA: Cuando una persona vende a otra una cosa con un defecto que no se ve y que impide utilizarla para el fin para el que se compró, ¿quién responderá de ese vicio oculto?
+        A: El comprador.
+        B: El vendedor.
+        C: A partes iguales, el comprador y el vendedor.
+        D: El vendedor, siempre que se le comunique dentro de las 24 horas siguientes a la venta.
+        SOLUCION: B
+        NORMA: Código Civil, art. 1474
+</article>
+<article class="pregunta" id="1A01031">
+        COD: 1A01031
+        PREGUNTA: ¿Qué obligaciones tiene el vendedor en la compraventa?
+        A: Conservar y custodiar, entregar la cosa y responder del saneamiento y vicios ocultos.
+        B: Restituir la cosa a cambio de precio con intereses de demora.
+        C: Solamente conservar y custodiar la cosa hasta su entrega y no responder de vicios ocultos salvo que se indique expresamente el contrato.
+        D: La única obligación del vendedor es entregar la cosa.
+        SOLUCION: A
+        NORMA: Código Civil, art. 1461
+</article>
+<article class="pregunta" id="1A01032">
+        COD: 1A01032
+        PREGUNTA: En el contrato de compraventa, ¿a qué está obligado el comprador?
+        A: A entregar la mercancía en el lugar y tiempo determinado en el contrato.
+        B: A pagar el precio convenido en el lugar y tiempo fijados.
+        C: A entregar los documentos que representen la cosa.
+        D: A conservar la cosa en buen estado de funcionamiento.
+        SOLUCION: B
+        NORMA: Código Civil, art. 1500
+</article>
+<article class="pregunta" id="1A01033">
+        COD: 1A01033
+        PREGUNTA: Si en el momento de la celebración de un contrato de compraventa no se señala el momento del pago, ¿cuándo debe realizarse?
+        A: Cuando lo pida el vendedor.
+        B: Cuando lo decida el comprador.
+        C: A los 90 días de la celebración del contrato.
+        D: En el momento de hacer la entrega de la cosa vendida.
+        SOLUCION: D
+        NORMA: Código Civil, art. 1500
+</article>
+<article class="pregunta" id="1A01034">
+        COD: 1A01034
+        PREGUNTA: El precio en el contrato de compraventa...
+        A: se puede fijar en bienes muebles o inmuebles.
+        B: se puede fijar en especie o con cualquier tipo de bienes.
+        C: puede no estar determinado.
+        D: debe estar determinado en dinero o signo que lo represente.
+        SOLUCION: D
+        NORMA: Código Civil, art. 1445
+</article>
+<article class="pregunta" id="1A01035">
+        COD: 1A01035
+        PREGUNTA: En un contrato de compraventa se establece que el precio se determinará por el valor que alcance el bien en la cotización un día concreto en la bolsa de Tokio, ¿es válido el contrato?
+        A: Sí, porque los contratos son válidos aunque no se fije el precio.
+        B: Sí, porque el precio se considera cierto si se fija de acuerdo con el valor en bolsa un día concreto tal y como se indica en la pregunta.
+        C: No, porque está prohibido fijar el precio por la cotización en bolsa del bien vendido.
+        D: No, porque el precio no se ha fijado exactamente en el momento de la celebración del contrato.
+        SOLUCION: B
+        NORMA: Código Civil, art. 1448
+</article>
+<article class="pregunta" id="1A02027">
+        COD: 1A02027
+        PREGUNTA: ¿Tiene validez el contrato de transporte suscrito por una empresa porteadora que carece de la autorización prevista en la Ley de Ordenación de los Transportes Terrestres?
+        A: Sí, pero limitada a la reclamación de portes.
+        B: Sí.
+        C: Sí, pero solo en los transportes privados complementarios.
+        D: No.
+        SOLUCION: B
+        NORMA: Código Civil, art. 1261; Código Civil, art. 1263
+</article>
+<article class="pregunta" id="1A01086">
+        COD: 1A01086
+        PREGUNTA: En el contrato de arrendamiento de cosas, ¿qué caracteriza el uso y disfrute a que tiene derecho el arrendatario?
+        A: Es por tiempo ilimitado, salvo pacto en contrario.
+        B: Su precio está el función de uso que se haga de la cosa.
+        C: Su duración y límite están tasados en la norma.
+        D: Se realiza por tiempo determinado y precio cierto.
+        SOLUCION: D
+        NORMA: Código Civil, art. 1543
+</article>
+<article class="pregunta" id="1A01087">
+        COD: 1A01087
+        PREGUNTA: ¿Quiénes pueden pactar un contrato de arrendamiento de cosa?
+        A: El propietario de la cosa y el usufructuario de la misma.
+        B: El poseedor de la cosa y el adquirente del uso de la misma.
+        C: El propietario de la cosa y el adquirente del uso de la misma.
+        D: El depositario de la cosa y su futuro adquirente.
+        SOLUCION: C
+        NORMA: Código Civil, art. 1546
+</article>
+<article class="pregunta" id="1A01088">
+        COD: 1A01088
+        PREGUNTA: ¿Cómo se denomina a quien adquiere el uso de una cosa a cambio del pago de un precio?
+        A: Comisionista.
+        B: Depositario.
+        C: Usufructuario.
+        D: Arrendatario.
+        SOLUCION: D
+        NORMA: Código Civil, art. 1546
+</article>
+<article class="pregunta" id="1A01089">
+        COD: 1A01089
+        PREGUNTA: ¿Cómo se denomina al propietario que cede la cosa a otro para su uso o disfrute a cambio de un precio?
+        A: Usufructuador.
+        B: Comitente.
+        C: Arrendador.
+        D: Prestador.
+        SOLUCION: C
+        NORMA: Código Civil, art. 1546
+</article>
+<article class="pregunta" id="1A01054">
+        COD: 1A01054
+        PREGUNTA: Para que un depósito sea considerado de carácter mercantil, es necesario que…
+        A: el valor de lo depositado supere los 6.000 €.
+        B: las cosas depositadas sean objeto de comercio.
+        C: el depositante sea un comerciante.
+        D: Todas son correctas.
+        SOLUCION: B
+        NORMA: Código de Comercio, art. 303
+</article>
+<article class="pregunta" id="1A01055">
+        COD: 1A01055
+        PREGUNTA: En el contrato de renting, el arrendador…
+        A: se compromete a la venta del bien al arrendatario al finalizar el contrato.
+        B: puede recuperar el bien en cualquier momento, previo preaviso.
+        C: se compromete a asesorar en el uso el bien al arrendatario.
+        D: se hace cargo del mantenimiento del bien durante la duración del contrato.
+        SOLUCION: D
+        NORMA: Código de Comercio, art. 50; Código Civil, art. 1554
+</article>
+<article class="pregunta" id="1A01056">
+        COD: 1A01056
+        PREGUNTA: Cuando una compraventa se documenta en escritura pública,…
+        A: no es válida si no se especifica cuál será el momento de entrega de la cosa.
+        B: es el comprador quien decide el momento de entrega de la cosa.
+        C: el otorgamiento de esta equivale a la entrega de la cosa.
+        D: no se entrega la cosa hasta la inscripción de la escritura en el registro correspondiente.
+        SOLUCION: C
+        NORMA: Código Civil, art. 1462
+</article>
+<article class="pregunta" id="1A01057">
+        COD: 1A01057
+        PREGUNTA: En un contrato de compraventa, salvo pacto en contrario, ¿quién debe pagar los gastos de transporte de la cosa para su entrega?
+        A: El vendedor y el comprador a partes iguales.
+        B: El vendedor.
+        C: El comprador.
+        D: Si el transporte excede el 10 % del precio, el vendedor.
+        SOLUCION: C
+        NORMA: Código Civil, art. 1465
+</article>
+<article class="pregunta" id="1A01058">
+        COD: 1A01058
+        PREGUNTA: ¿Debe responder el vendedor de los vicios ocultos de la cosa vendida cuando no sean conocidos por él?
+        A: No, solo está obligado a efectuar las reparaciones necesarias para solucionarlos.
+        B: Solo en caso de que sean de tal importancia que impidan totalmente el uso de la cosa.
+        C: No, pero debe devolver la parte proporcional de precio correspondiente a la devaluación de la cosa debido a los vicios.
+        D: Sí, salvo que se haya estipulado lo contrario.
+        SOLUCION: D
+        NORMA: Código Civil, art. 1485
+</article>
+<article class="pregunta" id="1A01051">
+        COD: 1A01051
+        PREGUNTA: Si el almacenista no es resarcido de los gastos que le ha supuesto la conservación de la cosa depositada, ¿cómo puede actuar?
+        A: Puede retenerla, en calidad de prenda, hasta el cobro de dichos gastos.
+        B: Debe entregar la mercancía, pero reclamar la deuda.
+        C: Puede proceder a la venta de la mercancía depositada para cobrarse los gastos.
+        D: Tiene un derecho de venta de la mercancía durante los 8 días siguientes a la negativa del pago.
+        SOLUCION: A
+        NORMA: Código de Comercio, art. 50; Código Civil, art. 1780 
+</article>
+<article class="pregunta" id="1A01047">
+        COD: 1A01047
+        PREGUNTA: ¿Cómo se denomina el derecho que permite al depositario conservar en su poder la cosa depositada hasta que se abone el completo pago de lo que se le deba por razón del depósito?
+        A: Derecho de garantía.
+        B: Derecho de excusión.
+        C: Derecho de retención.
+        D: Derecho de caución.
+        SOLUCION: C
+        NORMA: Código de Comercio, art. 50; Código Civil, art. 1780
+</article>
+
+<article class="pregunta" id="1A01049">
+        COD: 1A01049
+        PREGUNTA: Si una persona capaz de contratar acepta el depósito hecho por otra que es incapaz, ¿qué consecuencias tendrá este contrato?
+        A: Será nulo desde el principio, sin obligar al depositario en ningún momento.
+        B: Estará obligado a la devolución del depósito a petición del tutor del incapaz.
+        C: El depósito será válido sin más.
+        D: Se convierte en tutor del incapaz.
+        SOLUCION: B
+        NORMA: Código de Comercio, art. 50; Código Civil, art. 1764
+</article>
+</body>
+</html>
