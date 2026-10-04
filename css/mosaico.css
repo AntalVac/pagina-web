@@ -1,0 +1,65 @@
+
+body{
+    font-family: "Roboto", arial;
+}.mosaico {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 0px;
+}
+
+.tarjeta {
+  position: relative; /* Obligatorio para poder posicionar el texto dentro */
+  height: 250px; /* Altura fija para el mosaico */
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  text-decoration: none; /* Quita el subrayado típico de los enlaces */
+  transition: transform 0.3s ease; /* Efecto suave al pasar el ratón */
+}
+
+/* Efecto visual opcional: la tarjeta sube un poco al pasar el ratón */
+.tarjeta:hover {
+  transform: translateY(-5px);
+}
+
+.tarjeta img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.contenido-texto {
+  position: absolute;
+  bottom: 0; /* Lo pega a la parte inferior de la imagen */
+  left: 0;
+  width: 100%;
+  padding: 20px 15px 15px 15px; /* Más espacio arriba para el degradado */
+  box-sizing: border-box; /* Evita que el padding deforme el ancho */
+  
+  /* Degradado negro transparente para garantizar que el texto blanco sea legible */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.contenido-texto h3 {
+  margin: 0 0 4px 0;
+  font-size: 1.00rem;
+  color: #ffffff; /* Texto blanco */
+  font-weight: 600;
+  font-family: sans-serif;
+}
+
+.contenido-texto p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #dddddd; /* Texto gris claro para el subtítulo */
+  font-family: sans-serif;
+}
+.texto {
+  margin: 0 0 4px 0;
+  font-size: 1.00rem;
+  color: black; /* Texto blanco */
+  font-weight: 600;
+  font-family: sans-serif;
+}
+

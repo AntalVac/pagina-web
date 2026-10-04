@@ -614,4 +614,17 @@ hr {
 .palabra-negrita {
   font-weight: bold;
 }
+/*==============================================================
 
+                         ENLACES PARA PREGUNTAS
+
+================================================================*/
+.enlace1{
+    background-color: #3498db; /* Azul brillante */
+    color: white;
+    border: none;
+    font-size: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
