@@ -1,9 +1,10 @@
+
 .tooltip-articulo {
     position: relative;
-    color: #123b63;
-    font-weight: 600;
+    color: #000000;
+    font-weight: normal;
     cursor: help;
-    border-bottom: 1px dotted #123b63;
+    border-bottom: 1px dotted #000000;
 }
 
 .tooltip-contenido {
@@ -14,15 +15,14 @@
 
     width: 380px;
     max-width: 90vw;
-
     padding: 18px 20px;
 
-    background: #ffffff;
-    color: #24313d;
+    background: #E3F2FD;
+    color: #000000;
+    font-weight: normal;
 
     border: 1px solid #d8e0e7;
     border-radius: 12px;
-
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
 
     font-size: 0.90rem;
@@ -37,104 +37,28 @@
 
     z-index: 1000;
 }
-.tooltip-articulo {
-    position: relative;
-    color: #123b63;
-    font-weight: 600;
-    cursor: help;
-    border-bottom: 1px dotted #123b63;
-}
 
-.tooltip-contenido {
-    position: absolute;
-    left: 50%;
-    top: calc(100% + 12px);
-    transform: translateX(-50%);
-
-    width: 380px;
-    max-width: 90vw;
-
-    padding: 18px 20px;
-
-    background: #ffffff;
-    color: #24313d;
-
-    border: 1px solid #d8e0e7;
-    border-radius: 12px;
-
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
-
-    font-size: 0.90rem;
-    line-height: 1.5;
-
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-
-    transition: opacity 0.2s ease,
-                transform 0.2s ease;
-
-    z-index: 1000;
-}
-.tooltip-articulo {
-    position: relative;
-    color: #123b63;
-    font-weight: 600;
-    cursor: help;
-    border-bottom: 1px dotted #123b63;
-}
-
-.tooltip-contenido {
-    position: absolute;
-    left: 50%;
-    top: calc(100% + 12px);
-    transform: translateX(-50%);
-
-    width: 380px;
-    max-width: 90vw;
-
-    padding: 18px 20px;
-
-    background: #ffffff;
-    color: #24313d;
-
-    border: 1px solid #d8e0e7;
-    border-radius: 12px;
-
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
-
-    font-size: 0.90rem;
-    line-height: 1.5;
-
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-
-    transition: opacity 0.2s ease,
-                transform 0.2s ease;
-
-    z-index: 1000;
-}
 .tooltip-contenido strong:first-child {
     display: block;
     margin-bottom: 12px;
-
-    color: #123b63;
+    color: #000000;
     font-size: 1rem;
+    font-weight: normal;
 }
 
 .tooltip-contenido span {
     display: block;
     margin-top: 8px;
+    font-weight: normal;
 }
 
 .tooltip-contenido b {
-    color: #123b63;
+    color: #000000;
+    font-weight: normal;
 }
 
 .tooltip-articulo:hover .tooltip-contenido {
     opacity: 1;
     visibility: visible;
-
     transform: translateX(-50%) translateY(3px);
 }
